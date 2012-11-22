@@ -1,5 +1,6 @@
 PATH=$PATH:/usr/local/share/python:/usr/local/share/npm/bin:$HOME/bin:$HOME/scripts
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+# Open a ruby gem in slime
 function sg { bundle show $@ | xargs slime; }
 # export PROMPT_COMMAND='echo -ne "\033]0; ${PWD/#$HOME/~}\007"'
 alias ssmdev='ssh -i ~/work/SM/keys/AWS.pem ubuntu@smdev1.salemove.com'
@@ -12,10 +13,6 @@ alias ssmdev='ssh -i ~/work/SM/keys/AWS.pem ubuntu@smdev1.salemove.com'
 #export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[01;33m\]$(__git_ps1)\[\033[01;34m\] \$\[\033[00m\] '
 #export GIT_PS1_SHOWDIRTYSTATE=1
 #export PS1="\[\e[01;32m\]\u@\h \[\e[01;34m\]\W \`if [ \$? = 0 ]; then echo -e '\[\e[01;32m\]:)'; else echo -e '\[\e[01;31m\]:('; fi\` \[\e[01;34m\]$\[\e[00m\]"
-
-# NODE is now in /usr/local/bin/node
-# https://launchpad.net/~chris-lea/+archive/node.js/
-export NODE_PATH=/home/twalker/local/lib/node_modules
 
 export PATH=$HOME/local/bin:$PATH
 #export PATH=/usr/bin/node:$PATH
@@ -118,11 +115,8 @@ function git_cwd_info() {
   fi
 }
 
-function last_three_dirs() {
-  pwd |rev| awk -F / '{print $1,$2,$3}' | rev | sed 's/ /\//g'
-}
-
 PROMPT_DIRTRIM=3
+
 function prompt_func() {
     previous_return_value=$?;
     local smiley=""
