@@ -33,4 +33,4 @@ New stuff learned
 18. select by line no matter where the cursor is -- Vjj
 19. remove 2 words and do that same on next line -- d2w
   * on next line -- .
-
+20. insert the output of ls -la command -- !!ls -la

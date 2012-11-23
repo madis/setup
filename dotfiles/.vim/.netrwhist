@@ -1,11 +1,2 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =9
-let g:netrw_dirhist_1='/Users/madis/temp/proovikala'
-let g:netrw_dirhist_2='/Users/madis/temp/proovikala/config'
-let g:netrw_dirhist_3='/Users/madis/temp/ctags_tryout'
-let g:netrw_dirhist_4='/Users/madis/temp/ctags_tryout/app'
-let g:netrw_dirhist_5='/Users/madis/temp/ctags_tryout/app/assets'
-let g:netrw_dirhist_6='/Users/madis/temp/ctags_tryout/app/assets/stylesheets'
-let g:netrw_dirhist_7='/Users/madis/work/SM/code/new_world_order/sm-backend'
-let g:netrw_dirhist_8='/Users/madis/work/SM/code/new_world_order/salemove-be'
-let g:netrw_dirhist_9='/Users/madis/temp/learning-vim'
+let g:netrw_dirhist_cnt =0
