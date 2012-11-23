@@ -1,3 +1,9 @@
+OS X bash
+---------
+Bash tries to find local profile in following order
+1. ~/.bash_profile
+2. ~/.bash_login
+3. ~/.profile
 Upgrading bash through brew:
 ```bash
 brew install bash
