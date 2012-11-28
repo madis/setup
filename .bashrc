@@ -1,4 +1,3 @@
-echo "Loading bashrc"
 PATH=$PATH:$HOME/.rvm/bin:/usr/local/share/python:/usr/local/share/npm/bin:$HOME/bin:$HOME/scripts # Add RVM to PATH for scripting
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
@@ -15,6 +14,9 @@ alias ssmdev='ssh -i ~/work/SM/keys/AWS.pem ubuntu@smdev1.salemove.com'
 #export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[01;33m\]$(__git_ps1)\[\033[01;34m\] \$\[\033[00m\] '
 #export GIT_PS1_SHOWDIRTYSTATE=1
 #export PS1="\[\e[01;32m\]\u@\h \[\e[01;34m\]\W \`if [ \$? = 0 ]; then echo -e '\[\e[01;32m\]:)'; else echo -e '\[\e[01;31m\]:('; fi\` \[\e[01;34m\]$\[\e[00m\]"
+
+# Make ls show color
+export CLICOLOR=1
 
 export PATH=$HOME/local/bin:$PATH
 #export PATH=/usr/bin/node:$PATH
@@ -151,7 +153,7 @@ function prompt_func() {
       prompt="${YELLOW}\w${GIT_INFO}${COLOR_NONE}"
       PS1="${prompt}${smiley}➔ "
     fi
-    update_title_bar
+    #update_title_bar
 }
 
 # Choose simple or more detailed prompt:
