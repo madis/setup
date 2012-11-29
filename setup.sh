@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+# Turn off font smoothing to see more crispier text in iterm
+# Not needed for linux system also probably not with retina display
+defaults -currentHost write -globalDomain AppleFontSmoothing -int 0
+
 # Link bash_login to get prompt & other goodies
 ln -s /Users/madis/.setup/.bash_login /Users/madis/.bash_login
 ln -s /Users/madis/.setup/.bashrc /Users/madis/.bashrc

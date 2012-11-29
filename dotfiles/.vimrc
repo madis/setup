@@ -14,8 +14,9 @@ set smartindent
 syntax on
 
 " Show line numbers
-:set number
-
+set number
+" Highlight current line
+set cursorline
 " Set tabs to 2 spaces
 set tabstop=2
 set shiftwidth=2

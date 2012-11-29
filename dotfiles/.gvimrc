@@ -1,2 +1,2 @@
 set guifont=Monaco:h12
-set transparency=30
+set transparency=20
