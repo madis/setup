@@ -38,3 +38,12 @@ New stuff learned
      after that -- @@
      e.g. :tabn (next tab), @:
 22. clear find result highlighting -- :noh
+
+2012-11-29
+
+1. Resize windows
+  make window narrower, wider -- crtl-w > and crtl-w <
+  insert a new line below and go to insert mode -- o
+    - prefix with number of spaces to move more than 1
+  make windows equal -- crtl-w =
+
