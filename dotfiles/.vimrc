@@ -1,5 +1,7 @@
 " Highlight search terms
 set hlsearch
+" Allow hiding modified buffers
+set hidden
 
 " Ignore case sensitivity in searches
 set ignorecase
