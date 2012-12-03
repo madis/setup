@@ -162,4 +162,5 @@ function prompt_func() {
 # Choose simple or more detailed prompt:
 #PROMPT_COMMAND="prompt_func simple"
 PROMPT_COMMAND="prompt_func"
-alias slime=vim
+# alias slime=vim
+export NODE_PATH="/usr/local/lib/node"
