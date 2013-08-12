@@ -1,9 +1,14 @@
 # Set locale
 export LC_ALL="en_US.UTF-8"
+# Use UTF-8 for ruby
+export RUBYOPT=-Ku
 
-PATH=$PATH:$HOME/.rvm/bin:/usr/local/share/python:/usr/local/share/npm/bin:$HOME/bin:$HOME/scripts # Add RVM to PATH for scripting
+PATH=$PATH:/usr/local/share/python:$HOME/bin:$HOME/scripts:/usr/local/sbin # Add RVM to PATH for scripting
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+[[ -s "$HOME/.nvm/nvm.sh" ]] && source "$HOME/.nvm/nvm.sh"  # This loads NVM
+# . ~/.nvm/nvm.sh
+
 # Open a ruby gem in slime
 function sg { bundle show $@ | xargs slime; }
 # export PROMPT_COMMAND='echo -ne "\033]0; ${PWD/#$HOME/~}\007"'
@@ -39,7 +44,7 @@ COLOR_NONE="\[\e[0m\]"
 ORANGE="\[\033[01;32m\]"
 
 function update_title_bar() {
-  case "$TERM" in 
+  case "$TERM" in
   xterm*|rxvt*)
       echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"
       ;;
@@ -48,8 +53,8 @@ function update_title_bar() {
 
 function git_cwd_info() {
   local OPTS="$1"
-  # Based parse_git_branch 
-  #  https://gist.github.com/47267 
+  # Based parse_git_branch
+  #  https://gist.github.com/47267
   # plus git_cwd_info from
   #   https://github.com/topfunky/zsh-simple/blob/master/bin/git-cwd-info
 
@@ -163,4 +168,8 @@ function prompt_func() {
 #PROMPT_COMMAND="prompt_func simple"
 PROMPT_COMMAND="prompt_func"
 # alias slime=vim
-export NODE_PATH="/usr/local/lib/node"
+# export NODE_PATH="/usr/local/lib/node" # Turned off because nvm is providing it
+# Enable vault Bash autocompletion
+which vault > /dev/null && . "$( vault --initpath )"
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
