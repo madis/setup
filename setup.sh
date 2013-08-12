@@ -12,3 +12,7 @@ ln -s /Users/madis/.setup/dotfiles/.gvimrc /Users/madis/.gvimrc
 # Configure git to use global gitignore
 ln -s /Users/madis/.setup/dotfiles/.gitignore /Users/madis/.gitignore
 git config --global core.excludesfile ~/.gitignore
+
+# iTerm config
+mkdir -p ~/Library/Preferences
+ln -s ~/.setup/iterm2/com.googlecode.iterm2.plist ~/Library/Preferences/com.googlecode.iterm2.plist
