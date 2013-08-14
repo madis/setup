@@ -4,15 +4,21 @@
 defaults -currentHost write -globalDomain AppleFontSmoothing -int 0
 
 # Link bash_login to get prompt & other goodies
-ln -s /Users/$USER/.setup/.bash_login /Users/$USER/.bash_login
-ln -s /Users/$USER/.setup/.bashrc /Users/$USER/.bashrc
-ln -s /Users/$USER/.setup/dotfiles/.vim /Users/$USER/.vim
-ln -s /Users/$USER/.setup/dotfiles/.vimrc /Users/$USER/.vimrc
-ln -s /Users/$USER/.setup/dotfiles/.gvimrc /Users/$USER/.gvimrc
+ln -fs /Users/$USER/.setup/.bash_login /Users/$USER/.bash_login
+ln -fs /Users/$USER/.setup/.bashrc /Users/$USER/.bashrc
+ln -fs /Users/$USER/.setup/dotfiles/.vim /Users/$USER/.vim
+ln -fs /Users/$USER/.setup/dotfiles/.vimrc /Users/$USER/.vimrc
+ln -fs /Users/$USER/.setup/dotfiles/.gvimrc /Users/$USER/.gvimrc
 # Configure git to use global gitignore
-ln -s /Users/$USER/.setup/dotfiles/.gitignore /Users/$USER/.gitignore
+ln -fs /Users/$USER/.setup/dotfiles/.gitignore /Users/$USER/.gitignore
 git config --global core.excludesfile ~/.gitignore
 
-# iTerm config
-mkdir -p ~/Library/Preferences
-ln -s ~/.setup/iterm2/com.googlecode.iterm2.plist ~/Library/Preferences/com.googlecode.iterm2.plist
+# Set up slime alias for Sublime Text
+mkdir -p ~/bin
+ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/slime
+
+# Set up global git config
+git config --global user.name "Madis Nõmme"
+git config --global user.email madis.nomme@gmail.com
+# Use the brew installed vim instead of system one
+git config --global core.editor /usr/bin/vim
