@@ -4,13 +4,13 @@
 defaults -currentHost write -globalDomain AppleFontSmoothing -int 0
 
 # Link bash_login to get prompt & other goodies
-ln -s /Users/madis/.setup/.bash_login /Users/madis/.bash_login
-ln -s /Users/madis/.setup/.bashrc /Users/madis/.bashrc
-ln -s /Users/madis/.setup/dotfiles/.vim /Users/madis/.vim
-ln -s /Users/madis/.setup/dotfiles/.vimrc /Users/madis/.vimrc
-ln -s /Users/madis/.setup/dotfiles/.gvimrc /Users/madis/.gvimrc
+ln -s /Users/$USER/.setup/.bash_login /Users/$USER/.bash_login
+ln -s /Users/$USER/.setup/.bashrc /Users/$USER/.bashrc
+ln -s /Users/$USER/.setup/dotfiles/.vim /Users/$USER/.vim
+ln -s /Users/$USER/.setup/dotfiles/.vimrc /Users/$USER/.vimrc
+ln -s /Users/$USER/.setup/dotfiles/.gvimrc /Users/$USER/.gvimrc
 # Configure git to use global gitignore
-ln -s /Users/madis/.setup/dotfiles/.gitignore /Users/madis/.gitignore
+ln -s /Users/$USER/.setup/dotfiles/.gitignore /Users/$USER/.gitignore
 git config --global core.excludesfile ~/.gitignore
 
 # iTerm config
