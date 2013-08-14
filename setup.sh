@@ -22,3 +22,7 @@ git config --global user.name "Madis Nõmme"
 git config --global user.email madis.nomme@gmail.com
 # Use the brew installed vim instead of system one
 git config --global core.editor /usr/bin/vim
+
+# Link sublime settings
+ln -sf /Users/madis/.setup/sublime-settings/User /Users/madis/Library/Application\ Support/Sublime\ Text\ 3/Packages
+

@@ -1,0 +1,28 @@
+{
+	"auto_upgrade_last_run": null,
+	"installed_packages":
+	[
+		"Better CoffeeScript",
+		"CoffeeComplete Plus (Autocompletion)",
+		"CoffeeScript",
+		"Comments Aware Enter",
+		"CTags",
+		"Cucumber",
+		"Cucumber Completion",
+		"Enhanced Clojure",
+		"Gem Browser",
+		"Gherkin (Cucumber) Formatter",
+		"Git",
+		"GitGutter",
+		"HTML5",
+		"Package Control",
+		"Pretty JSON",
+		"ruby-slim.tmbundle",
+		"RubyTest",
+		"Sass",
+		"SplitScreen",
+		"SublimeREPL",
+		"Vintageous",
+		"Wrap Plus"
+	]
+}
