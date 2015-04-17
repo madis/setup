@@ -1,0 +1,10 @@
+[
+    { "keys": ["super+shift+r"], "command": "goto_symbol_in_project" },
+    { "keys": ["ctrl+super+r"], "command": "reveal_in_side_bar"},
+    { "keys": ["alt+super+l"], "command": "open_url"},
+
+    { "keys": ["super+shift+f2"], "command": "sublime_bookmark", "args" : { "type" : "add"  } },
+    { "keys": ["f2"], "command": "sublime_bookmark", "args" : { "type" : "goto_next" } },
+    { "keys": ["shift+f2"], "command": "sublime_bookmark", "args" : { "type" : "goto_prev" } },
+    { "keys": ["super+f2"], "command": "sublime_bookmark", "args" : { "type" : "toggle_line"  } }
+]
