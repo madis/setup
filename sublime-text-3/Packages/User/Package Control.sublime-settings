@@ -1,6 +1,10 @@
 {
 	"in_process_packages":
 	[
+		"ApplySyntax",
+		"HexViewer",
+		"nginx",
+		"RubyTest"
 	],
 	"installed_packages":
 	[

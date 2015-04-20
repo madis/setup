@@ -14,19 +14,20 @@
 	"highlight_line": true,
 	"ignored_packages":
 	[
-		"SublimeREPL",
-		"HTML-CSS-JS Prettify",
-		"Markdown",
-		"Vintageous",
 		"BeautifyRuby",
 		"BracketHighlighter",
+		"DocBlockr",
+		"HTML-CSS-JS Prettify",
 		"JavaScript",
-		"Sublime-Wrap-Plus",
-		"Vintage",
+		"Markdown",
 		"RSpec",
-		"DocBlockr"
+		"Sublime-Wrap-Plus",
+		"SublimeREPL",
+		"Vintage",
+		"Vintageous"
 	],
 	"show_minimap": false,
+	"always_show_minimap_viewport": true,
 	"tab_size": 2,
 	"translate_tabs_to_spaces": true,
 	"trim_trailing_white_space_on_save": true

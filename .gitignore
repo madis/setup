@@ -2,5 +2,6 @@ dotfiles/.vim/.netrwhist
 .swp
 sublime-settings/User/Package Control.cache/
 sublime-settings/User/Package Control.last-run
+.DS_Store
 
 
