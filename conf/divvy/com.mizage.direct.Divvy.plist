@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SUEnableAutomaticChecks</key>
+	<false/>
+	<key>SUHasLaunchedBefore</key>
+	<true/>
+	<key>SULastCheckTime</key>
+	<date>2015-04-19T14:01:10Z</date>
+	<key>SULastProfileSubmissionDate</key>
+	<date>2015-04-19T14:01:10Z</date>
+	<key>SUSendProfileInfo</key>
+	<true/>
+	<key>WebKitDefaultFontSize</key>
+	<integer>11</integer>
+	<key>WebKitStandardFont</key>
+	<string>Lucida Grande</string>
+	<key>defaultColumnCount</key>
+	<integer>6</integer>
+	<key>defaultRowCount</key>
+	<integer>6</integer>
+	<key>enableAcceleration</key>
+	<true/>
+	<key>globalHotkey</key>
+	<dict>
+		<key>keyCode</key>
+		<integer>49</integer>
+		<key>modifiers</key>
+		<integer>768</integer>
+	</dict>
+	<key>kXMRegCode</key>
+	<string>GAWQE-F9AZ9-8PUPW-Z5GVB-6RYQQ-ZQSCZ-PXB9F-S24F4-A9KGE-J89AC-H9L5J-UQHML-DXTAR-JXZ32-M4AB5-Q</string>
+	<key>kXMRegName</key>
+	<string>Madis Nõmme</string>
+	<key>lastColumnCount</key>
+	<integer>6</integer>
+	<key>lastRowCount</key>
+	<integer>6</integer>
+	<key>shortcuts</key>
+	<data>
+	YnBsaXN0MDDUAQIDBAUIoqNUJHRvcFgkb2JqZWN0c1gkdmVyc2lvblkkYXJjaGl2ZXLR
+	BgdUcm9vdIABrxAcCQobMzQ6Q0RMTVVWXl9naHBxeXqCg4uMlJWdnlUkbnVsbNILDA0O
+	ViRjbGFzc1pOUy5vYmplY3RzgBusDxAREhMUFRYXGBkagAKABYAHgAmAC4ANgA+AEYAT
+	gBWAF4AZ3RwdHh8gISIjJCUmJwsoKSorLCktLi8rMS0yXxASc2VsZWN0aW9uRW5kQ29s
+	dW1uXxARc2VsZWN0aW9uU3RhcnRSb3dca2V5Q29tYm9Db2RlV2VuYWJsZWRda2V5Q29t
+	Ym9GbGFnc18QFHNlbGVjdGlvblN0YXJ0Q29sdW1uW3NpemVDb2x1bW5zWnN1YmRpdmlk
+	ZWRXbmFtZUtleVZnbG9iYWxfEA9zZWxlY3Rpb25FbmRSb3dYc2l6ZVJvd3MQAhAAEBIJ
+	EgAeAAAQBgiAAwkQA4AEXxAQQmlnIEJyb3dzZXIgTGVmdNI1Njc4WCRjbGFzc2VzWiRj
+	bGFzc25hbWWiODlYU2hvcnRjdXRYTlNPYmplY3TdHB0eHyAhIiMkJSYnCzspPCs+MS0u
+	QCsxLTIQBRATCRIAHgAACIAGCYAEXxARQmlnIEJyb3dzZXIgUmlnaHTdHB0eHyAhIiMk
+	JSYnCzsxRStHKS0uSSs7LTIQfQkSAJ4AAAiACAmABFpMb3dlciBIYWxm3RwdHh8gISIj
+	JCUmJws7KU4rUCktLlIrKC0yEH4JEgCeAAAIgAoJgARYVG9wIEhhbGbdHB0eHyAhIiMk
+	JSYnCygpVytZKS0uWysoLTIQIAkSAB4AAAiADAmABF8QEVRvcCBSaWdodCBRdWFydGVy
+	3RwdHh8gISIjJCUmJws7KWArYjEtLmQrKC0yECIJEgAeAAAIgA4JgARfEBBUb3AgUmln
+	aHQgQ29ybmVy3RwdHh8gISIjJCUmJwsoMWkrayktLm0rOy0yECYJEgAeAAAIgBAJgARb
+	Qm90dG9tIExlZnTdHB0eHyAhIiMkJSYnCzsxcit0MS0udis7LTIQKAkSAB4AAAiAEgmA
+	BFxCb3R0b20gUmlnaHTdHB0eHyAhIiMkJSYnCzspeyt9KS0ufys7LTIQHwkSAB4AAAiA
+	FAmABFtGdWxsIFNjcmVlbt0cHR4fICEiIyQlJicLKCmEK4YpLS6IKzstMhB7CRIAngAA
+	CIAWCYAEWUxlZnQgSGFsZt0cHR4fICEiIyQlJicLOymNK48xLS6RKzstMhB8CRIAngAA
+	CIAYCYAEWlJpZ2h0IEhhbGbdHB0eHyAhIiMkJSYnCzsoliuYKS0umis7LTIQMQkSAB4A
+	AAiAGgmABFlMb3dlciAyLzPSNTafoKOgoTleTlNNdXRhYmxlQXJyYXlXTlNBcnJheRIA
+	AYagXxAPTlNLZXllZEFyY2hpdmVyAAgAEQAWAB8AKAAyADUAOgA8AFsAYQBmAG0AeAB6
+	AIcAiQCLAI0AjwCRAJMAlQCXAJkAmwCdAJ8AugDPAOMA8AD4AQYBHQEpATQBPAFDAVUB
+	XgFgAWIBZAFlAWoBbAFtAW8BcAFyAXQBhwGMAZUBoAGjAawBtQHQAdIB1AHVAdoB2wHd
+	Ad4B4AH0Ag8CEQISAhcCGAIaAhsCHQIoAkMCRQJGAksCTAJOAk8CUQJaAnUCdwJ4An0C
+	fgKAAoECgwKXArICtAK1AroCuwK9Ar4CwALTAu4C8ALxAvYC9wL5AvoC/AMIAyMDJQMm
+	AysDLAMuAy8DMQM+A1kDWwNcA2EDYgNkA2UDZwNzA44DkAORA5YDlwOZA5oDnAOmA8ED
+	wwPEA8kDygPMA80DzwPaA/UD9wP4A/0D/gQABAEEAwQNBBIEFgQlBC0EMgAAAAAAAAIB
+	AAAAAAAAAKQAAAAAAAAAAAAAAAAAAARE
+	</data>
+	<key>useDefaultGrid</key>
+	<true/>
+	<key>useGlobalHotkey</key>
+	<true/>
+</dict>
+</plist>
