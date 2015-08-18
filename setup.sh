@@ -3,14 +3,6 @@
 # Not needed for linux system also probably not with retina display
 defaults -currentHost write -globalDomain AppleFontSmoothing -int 0
 
-# Install some system services
-# Link bash_login to get prompt & other goodies
-ln -fs ./dotfiles/.bash_login /Users/$USER/.bash_login
-ln -fs ./dotfiles/.bashrc /Users/$USER/.bashrc
-ln -fs ./dotfiles/.vim /Users/$USER/.vim
-ln -fs ./dotfiles/.vimrc /Users/$USER/.vimrc
-ln -fs ./dotfiles/.gvimrc /Users/$USER/.gvimrc
-
 # Configure git to use global gitignore
 ln -fs /Users/$USER/.setup/dotfiles/.gitignore /Users/$USER/.gitignore
 git config --global core.excludesfile ~/.gitignore
