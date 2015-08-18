@@ -7,8 +7,8 @@
 4. run ```./setup_scripts/install_homebrew_stuff.sh```
 4. Install iTerm2
 5. Install SublimeText
-6. Install divvy
-7. Install 
+6. [Install divvy](http://mizage.com/divvy/)
+7. [Install karabinier & seil](https://pqrs.org/osx/karabiner/)
 
 Bash tries to find local profile in following order
 1. ~/.bash_profile
