@@ -1,5 +1,15 @@
-OS X bash
----------
+# OS X
+
+1. Install chrome
+2. Install Xcode
+3. Install latest JDK
+3. Install homebrew
+4. run ```./setup_scripts/install_homebrew_stuff.sh```
+4. Install iTerm2
+5. Install SublimeText
+6. Install divvy
+7. Install 
+
 Bash tries to find local profile in following order
 1. ~/.bash_profile
 2. ~/.bash_login
