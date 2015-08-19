@@ -1,7 +1,7 @@
 {
 	"auto_match_enabled": true,
 	"caret_style": "phase",
-	"color_scheme": "Packages/Solarized Color Scheme/Solarized (light).tmTheme",
+	"color_scheme": "Packages/Solarized Color Scheme/Solarized (dark).tmTheme",
 	"ensure_newline_at_eof_on_save": true,
 	"fade_fold_buttons": false,
 	"file_exclude_patterns":
@@ -10,20 +10,20 @@
 		".tags_sorted_by_file",
 		".gemtags"
 	],
-	"font_size": 16,
+	"font_size": 12,
 	"highlight_line": true,
 	"ignored_packages":
 	[
-		"HTML-CSS-JS Prettify",
 		"BracketHighlighter",
-		"Markdown",
 		"BeautifyRuby",
-		"Vintageous",
-		"RSpec",
-		"SublimeREPL",
 		"Vintage",
-		"JavaScript",
+		"Markdown",
+		"Vintageous",
 		"Sublime-Wrap-Plus",
+		"JavaScript",
+		"RSpec",
+		"HTML-CSS-JS Prettify",
+		"SublimeREPL",
 		"DocBlockr"
 	],
 	"show_minimap": false,
