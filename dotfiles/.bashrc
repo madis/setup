@@ -47,3 +47,7 @@ export DOCKER_HOST=tcp://192.168.59.103:2376
 export DOCKER_CERT_PATH=/Users/madis/.boot2docker/certs/boot2docker-vm
 
 complete -C aws_completer aws
+
+ulimit -n 65536
+ulimit -u 2048
+

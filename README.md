@@ -1,5 +1,35 @@
-OS X bash
----------
+# OS X
+
+1. Install chrome
+2. Install Xcode
+3. [Install divvy](http://mizage.com/divvy/)
+  - copy divvy config
+4. Install latest JDK
+5. Install homebrew
+6. run ```./setup_scripts/install_homebrew_stuff.sh```
+7. Install iTerm2
+  - set up arrows 
+  
+    1) in ~/.inputrc:
+    ```
+    "\M-d": backward-kill-word
+    "\e[1;5C": forward-word
+    "\e[1;5D": backward-word
+    ```
+
+    2) iTerm2 preferences:
+    Profiles -> Keys
+
+      1) mark Left option key acts as +Esc
+      2) ⌥← to Action: *Send Escape Sequence* Esc+: ```[1;5D```
+      3) ⌥→ to Action: *Send Escape Sequence* Esc+: ```[1;5C```
+
+    Now you can *delete by word* with pressing option + delete key down and *move by word* with pressing option + arrow.
+
+8. Install SublimeText
+9. 
+10. [Install karabinier & seil](https://pqrs.org/osx/karabiner/)
+
 Bash tries to find local profile in following order
 1. ~/.bash_profile
 2. ~/.bash_login

@@ -1,1 +1,1 @@
-/Users/madisnomme/.setup/dotfiles/.vim
+/Users/madis/code/madis/setup/dotfiles/.vim
