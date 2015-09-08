@@ -30,10 +30,11 @@ set shiftwidth=2
 set expandtab
 
 " Use vividchalk color scheme
-colorscheme vividchalk
+" colorscheme solarized
 
 " Use pathogen for auto-loading vim plugins
-call pathogen#infect()
+" execute pathogen#infect()
+syntax on
 filetype plugin indent on
 
 " Ruby autocomplete

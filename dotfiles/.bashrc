@@ -29,11 +29,11 @@ function user_aware_prompt {
     echo -e "${LIGHT_RED}#${COLOR_NONE} "
   fi
 }
+export PROMPT_DIRTRIM=3
 export PROMPT_COMMAND='echo -ne "\033]0; ${PWD/#$HOME/~}\007"'
 export PS1="\[$YELLOW\]\w${GREEN}\$(__git_ps1) "$(user_aware_prompt)
 # Make ls show color
 export CLICOLOR=1
-PROMPT_DIRTRIM=3
 
 alias simulator='open /Applications/Xcode.app/Contents/Developer/Applications/iOS\ Simulator.app'
 
@@ -50,4 +50,6 @@ complete -C aws_completer aws
 
 ulimit -n 65536
 ulimit -u 2048
+
+complete -C aws_completer aws
 

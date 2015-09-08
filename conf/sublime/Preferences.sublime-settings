@@ -14,20 +14,20 @@
 	"highlight_line": true,
 	"ignored_packages":
 	[
-		"BracketHighlighter",
+		"HTML-CSS-JS Prettify",
 		"BeautifyRuby",
-		"Vintage",
-		"Markdown",
-		"Vintageous",
+		"DocBlockr",
 		"Sublime-Wrap-Plus",
 		"JavaScript",
 		"RSpec",
-		"HTML-CSS-JS Prettify",
-		"SublimeREPL",
-		"DocBlockr"
+		"Vintage",
+		"Markdown",
+		"Vintageous"
 	],
 	"show_minimap": false,
 	"tab_size": 2,
 	"translate_tabs_to_spaces": true,
-	"trim_trailing_white_space_on_save": true
+	"trim_trailing_white_space_on_save": true,
+	"detect_indentation": false,
+  "match_brackets": false
 }
