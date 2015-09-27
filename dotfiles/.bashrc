@@ -51,3 +51,6 @@ complete -C aws_completer aws
 ulimit -n 65536
 ulimit -u 2048
 
+complete -C aws_completer aws
+export LOLCOMMITS_DELAY=2
+

@@ -27,6 +27,18 @@
     Now you can *delete by word* with pressing option + delete key down and *move by word* with pressing option + arrow.
 
 8. Install SublimeText
+  - Better CoffeeScript
+  - Better RSpec
+  - BracketHighlighter
+  - ApplySyntax
+  - GitGutter
+  - lispindent
+  - MarkdownEditing
+  - RubySlim
+  - Solarized Color Scheme
+  - SublimeREPL
+  - SublimeBookmarks
+
 9. 
 10. [Install karabinier & seil](https://pqrs.org/osx/karabiner/)
 
