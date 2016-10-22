@@ -104,6 +104,13 @@ endif
 
 inoremap <C-U> <C-G>u<C-U>
 
+" Load Powerline fonts for airline
+let g:airline_powerline_fonts = 1
+set t_Co=256
+set guifont=Inconsolata\ for\ Powerline:h15
+set fillchars+=stl:\ ,stlnc:\
+set termencoding=utf-8
+
 " vim:set ft=vim et sw=2:
 call plug#begin()
 
@@ -111,11 +118,13 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
 Plug 'valloric/youcompleteme'
 Plug 'thoughtbot/vim-rspec'
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-endwise'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
