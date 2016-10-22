@@ -1,4 +1,0 @@
-{
-	"last_test_run": "rspec -I lib -I spec spec/m3u_sorter_spec.rb",
-	"last_test_working_dir": "/Users/madis/temp/learning-ruby/m3u-sorter"
-}
