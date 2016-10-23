@@ -45,6 +45,7 @@ augroup myfiletypes
   autocmd FileType ruby,eruby,yaml setlocal path+=lib
   " Make ?s part of words
   autocmd FileType ruby,eruby,yaml setlocal iskeyword+=?
+  autocmd BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
 
   " Clojure
   autocmd FileType clojure setlocal colorcolumn=80
@@ -125,6 +126,7 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-endwise'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
+Plug 'kchmck/vim-coffee-script'
 
 call plug#end()
 
