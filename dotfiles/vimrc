@@ -47,6 +47,9 @@ augroup myfiletypes
   autocmd FileType ruby,eruby,yaml setlocal iskeyword+=?
   autocmd BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
 
+  " Automatically remove trailing whitespace
+  autocmd BufWritePre * StripWhitespace
+
   " Clojure
   autocmd FileType clojure setlocal colorcolumn=80
   autocmd FileType clojure map <Leader>t :!lein test<cr>
@@ -121,7 +124,6 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'vim-airline/vim-airline'
 Plug 'valloric/youcompleteme'
-Plug 'thoughtbot/vim-rspec'
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-endwise'
 Plug 'airblade/vim-gitgutter'
@@ -134,6 +136,8 @@ Plug 'mustache/vim-mustache-handlebars'
 Plug 'kana/vim-textobj-user'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'mileszs/ack.vim'
+Plug 'vimtaku/hl_matchit.vim'
+Plug 'ntpeters/vim-better-whitespace'
 
 call plug#end()
 
@@ -142,6 +146,11 @@ map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
+" Run run rspec with colors
+let g:rspec_command = "!rspec --color {spec}"
+
+"Highlight Ruby matching do/end def/end blocks
+let g:hl_matchit_enable_on_vim_startup = 1
 
 " Make CtrlP use ag for listing the files. Way faster and no useless files.
 " The Silver Searcher
@@ -149,7 +158,6 @@ if executable('ag')
   " Use ag over grep
   set grepprg=ag\ --nogroup\ --nocolor
   let g:ackprg = 'ag --vimgrep'
-
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
