@@ -138,6 +138,7 @@ Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'mileszs/ack.vim'
 Plug 'vimtaku/hl_matchit.vim'
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'camelcasemotion'
 
 call plug#end()
 
