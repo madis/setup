@@ -9,7 +9,6 @@ git config --global core.excludesfile ~/.gitignore
 
 # Set up slime alias for Sublime Text
 mkdir -p ~/bin
-ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/slime
 
 # Set up global git config
 git config --global user.name "Madis Nõmme"
@@ -18,7 +17,4 @@ git config --global color.diff true
 
 # Use the brew installed vim instead of system one
 git config --global core.editor /usr/bin/vim
-
-# Link sublime settings
-ln -sf /Users/madis/.setup/sublime-settings/User /Users/madis/Library/Application\ Support/Sublime\ Text\ 3/Packages
 

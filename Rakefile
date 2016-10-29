@@ -33,14 +33,17 @@ class Helpers
   # Default target is to prefix source with '.'
   def symlink(source, target=".#{source}")
     puts "Symlinking #{dotfiles(source)} -> #{home(target)}"
-    if File.exist?(home(target)) && user_confirms?("Overwrite", home(target))
-      FileUtils.ln_sf dotfiles(source), home(target) unless dry_run?
+    if File.exist?(home(target))
+      if user_confirms?("Overwrite", home(target))
+        FileUtils.ln_sf dotfiles(source), home(target) unless dry_run?
+      else
+        puts "Skipping #{source}"
+      end
     else
-      FileUtils.ln_s dotfiles(source), home(target) unless dry_run?
+      FileUtils.ln_sf dotfiles(source), home(target) unless dry_run?
     end
   end
 end
-
 
 desc 'Link dotfiles to appropriate positions in the system'
 task :install do
@@ -52,6 +55,9 @@ task :install do
     symlink 'vimrc', '.config/nvim/init.vim'
     symlink 'gitignore'
     symlink 'tmux.config'
+    symlink 'zshrc'
+    symlink 'zlogin'
+
     FileUtils.mkdir_p home 'bin'
     FileUtils.symlink bin('tat'), home('bin/tat')
   end
