@@ -26,6 +26,10 @@ set incsearch
 " Use F3 to clear search highlighting
 nnoremap <F3> :set hlsearch!<CR>
 
+" More natural open split location
+set splitbelow
+set splitright
+
 set ruler
 set wildmenu
 set laststatus=2
