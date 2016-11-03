@@ -172,6 +172,7 @@ Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'christoomey/vim-tmux-runner'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
+Plug 'actionshrimp/vim-xpath'
 
 call plug#end()
 

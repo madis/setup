@@ -1,0 +1,19 @@
+[user]
+	name = Madis Nõmme
+	email = madis.nomme@gmail.com
+[color]
+	diff = true
+[core]
+	editor = nvim
+	excludesfile = /Users/madisnoemme/.gitignore_global
+[mergetool]
+	path = nvim
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path =
+[commit]
+  template = /Users/madisnoemme/.stCommitMsg
+[log]
+  date = relative
+[format]
+  pretty = format:%C(auto,yellow)%h%C(auto,magenta)% G? %C(auto,blue)%>(12,trunc)%ad %C(auto,green)%<(7,trunc)%aN%C(auto,reset)%s%C(auto,red)% gD% D
