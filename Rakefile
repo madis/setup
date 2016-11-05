@@ -53,7 +53,7 @@ task :install do
     symlink 'gemrc'
     symlink 'vimrc'
     symlink 'vimrc', '.config/nvim/init.vim'
-    symlink 'gitignore'
+    symlink 'gitignore_global'
     symlink 'gitconfig'
     symlink 'tmux.config'
     symlink 'zshrc'

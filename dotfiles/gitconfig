@@ -5,12 +5,17 @@
 	diff = true
 [core]
 	editor = nvim
-	excludesfile = /Users/madisnoemme/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [mergetool]
 	path = nvim
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path =
+  path =
+[alias]
+  co = checkout
+  ci = commit
+  st = status
+  br = branch
 [commit]
   template = /Users/madisnoemme/.stCommitMsg
 [log]
