@@ -160,7 +160,6 @@ Plug 'tpope/vim-endwise'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'kchmck/vim-coffee-script'
-Plug 'mhinz/vim-startify'
 Plug 'docunext/closetag.vim'
 Plug 'thoughtbot/vim-rspec'
 Plug 'mustache/vim-mustache-handlebars'
@@ -171,14 +170,11 @@ Plug 'vimtaku/hl_matchit.vim'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'camelcasemotion'
 Plug 'Quramy/tsuquyomi'
-Plug 'leafgarland/typescript-vim'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'christoomey/vim-tmux-runner'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
-Plug 'actionshrimp/vim-xpath'
 Plug 'posva/vim-vue'
-
 call plug#end()
 
 " RSpec.vim mappings
