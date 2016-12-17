@@ -58,6 +58,8 @@ task :install do
     symlink 'tmux.config'
     symlink 'zshrc'
     symlink 'zlogin'
+    symlink 'railsrc'
+    symlink 'irbrc'
 
     FileUtils.mkdir_p home 'bin'
     FileUtils.symlink bin('tat'), home('bin/tat')
