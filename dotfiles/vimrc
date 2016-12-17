@@ -24,6 +24,8 @@ set autoindent
 set backspace=indent,eol,start
 set complete-=i
 set smarttab
+set ignorecase
+set smartcase
 set number
 set nrformats-=octal
 
@@ -175,6 +177,7 @@ Plug 'christoomey/vim-tmux-runner'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'posva/vim-vue'
+Plug 'roman/golden-ratio'
 call plug#end()
 
 " RSpec.vim mappings
