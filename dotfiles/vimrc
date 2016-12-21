@@ -163,7 +163,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'kchmck/vim-coffee-script'
 Plug 'docunext/closetag.vim'
-Plug 'thoughtbot/vim-rspec'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'kana/vim-textobj-user'
 Plug 'nelstrom/vim-textobj-rubyblock'
@@ -178,13 +177,17 @@ Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'posva/vim-vue'
 Plug 'roman/golden-ratio'
+Plug 'kassio/neoterm'
+Plug 'janko-m/vim-test'
 call plug#end()
 
-" RSpec.vim mappings
-map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
-map <Leader>a :call RunAllSpecs()<CR>
+let test#strategy = "neoterm"
+
+" vim-test mappings
+map <Leader>t :TestFile<CR>
+map <Leader>s :TestNearest<CR>
+map <Leader>l :TestLast<CR>
+map <Leader>a :TestSuite<CR>
 
 "Highlight Ruby matching do/end def/end blocks
 let g:hl_matchit_enable_on_vim_startup = 1
