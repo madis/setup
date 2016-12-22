@@ -181,6 +181,9 @@ Plug 'kassio/neoterm'
 Plug 'janko-m/vim-test'
 call plug#end()
 
+" usefule neoterm mappings
+nnoremap <F2> :call neoterm#toggle()<cr>
+
 let test#strategy = "neoterm"
 
 " vim-test mappings
