@@ -79,6 +79,8 @@ augroup myfiletypes
   " Clojure
   autocmd FileType clojure setlocal colorcolumn=80
   autocmd FileType clojure map <Leader>t :!lein test<cr>
+  " Procfile
+  autocmd BufNewFile,BufReadPost Procfile set filetype=ruby
 augroup END
 
 if has ('autocmd') " Remain compatible with earlier versions
@@ -179,6 +181,8 @@ Plug 'posva/vim-vue'
 Plug 'roman/golden-ratio'
 Plug 'kassio/neoterm'
 Plug 'janko-m/vim-test'
+Plug 'slim-template/vim-slim'
+
 call plug#end()
 
 " usefule neoterm mappings
