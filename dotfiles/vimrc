@@ -1,12 +1,5 @@
-if exists('g:loaded_sensible') || &compatible
-  finish
-else
-  let g:loaded_sensible = 1
-endif
-
-if has('autocmd')
-  filetype plugin indent on
-endif
+set nocompatible
+filetype plugin indent on
 
 syntax enable " Enable syntax highlighting
 let mapleader = ","
@@ -53,8 +46,8 @@ set nofoldenable    " disable folding (for markdown)
 " Show thin cursor in iterm. For neovim export
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 if $TERM_PROGRAM =~ "iTerm"
-    let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
-    let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
 endif
 
 " automatically rebalance windows on vim resize
@@ -62,6 +55,12 @@ autocmd VimResized * :wincmd =
 " zoom a vim pane, <C-w>= to re-balance
 nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
 nnoremap <leader>= :wincmd =<cr>
+
+augroup ft_rb
+  autocmd!
+  " fix the SLOOOW syntax highlighting
+  autocmd FileType ruby setlocal re=1 foldmethod=manual
+augroup END
 
 augroup myfiletypes
   " Clear old autocmds in group
@@ -83,12 +82,10 @@ augroup myfiletypes
   autocmd BufNewFile,BufReadPost Procfile set filetype=ruby
 augroup END
 
-if has ('autocmd') " Remain compatible with earlier versions
- augroup vimrc     " Source vim configuration upon save
-    autocmd! BufWritePost $MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw
-    autocmd! BufWritePost $MYGVIMRC if has('gui_running') | so % | echom "Reloaded " . $MYGVIMRC | endif | redraw
-  augroup END
-endif " has autocmd
+augroup vimrc     " Source vim configuration upon save
+  autocmd! BufWritePost $MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw
+  autocmd! BufWritePost $MYGVIMRC if has('gui_running') | so % | echom "Reloaded " . $MYGVIMRC | endif | redraw
+augroup END
 
 if !&scrolloff
   set scrolloff=1
@@ -114,18 +111,11 @@ if has('path_extra')
   setglobal tags-=./tags tags-=./tags; tags^=./tags;
 endif
 
-if &shell =~# 'fish$' && (v:version < 704 || v:version == 704 && !has('patch276'))
-  set shell=/bin/bash
-endif
-
 set autoread
 
-if &history < 1000
-  set history=1000
-endif
-if &tabpagemax < 50
-  set tabpagemax=50
-endif
+set history=1000
+set tabpagemax=50
+
 if !empty(&viminfo)
   set viminfo^=!
 endif
@@ -214,7 +204,7 @@ if executable('ag')
 endif
 
 " bind \ (backward slash) to grep shortcut
-command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 " Map backslash for searching with Ag
 nnoremap \ :Ack<SPACE>
 
