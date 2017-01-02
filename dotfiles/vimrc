@@ -140,6 +140,9 @@ set guifont=Inconsolata\ for\ Powerline:h15
 set fillchars+=stl:\ ,stlnc:\
 set termencoding=utf-8
 
+" More readable highlighting
+highlight Search ctermfg=black ctermbg=yellow
+
 " vim:set ft=vim et sw=2:
 call plug#begin()
 
