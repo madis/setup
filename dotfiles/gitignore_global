@@ -4,3 +4,6 @@
 *.swo
 tags
 coverage
+.starscope.db
+spec/examples.txt
+

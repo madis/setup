@@ -175,6 +175,9 @@ Plug 'roman/golden-ratio'
 Plug 'kassio/neoterm'
 Plug 'janko-m/vim-test'
 Plug 'slim-template/vim-slim'
+Plug 'Chiel92/vim-autoformat'
+Plug 'mattn/emmet-vim'
+Plug 'tpope/vim-rails'
 
 call plug#end()
 
