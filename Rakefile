@@ -52,6 +52,7 @@ task :install do
     symlink 'bash_login'
     symlink 'gemrc'
     symlink 'vimrc'
+    FileUtils.mkdir_p home '.config/nvim'
     symlink 'vimrc', '.config/nvim/init.vim'
     symlink 'gitignore_global'
     symlink 'gitconfig'
