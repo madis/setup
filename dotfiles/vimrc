@@ -189,6 +189,7 @@ Plug 'tpope/vim-rails'
 Plug 'guns/vim-clojure-static'
 Plug 'tpope/vim-fireplace'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'davidhalter/jedi-vim'
 
 call plug#end()
 
@@ -225,3 +226,4 @@ command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 " Map backslash for searching with Ag
 nnoremap \ :Ack<SPACE>
 
+vmap <F4> :VtrSendLinesToRunner<CR>
