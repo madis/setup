@@ -73,6 +73,8 @@ export PATH="/Users/madis/anaconda3/bin:$PATH" # added by Anaconda3 4.2.0 instal
 export NVM_DIR=~/.nvm
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
+export JAVA_HOME=$(/usr/libexec/java_home)
+
 # Ensure always running in tmux
 _not_inside_tmux() { [[ -z "$TMUX" ]] }
 
