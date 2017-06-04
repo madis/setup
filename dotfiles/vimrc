@@ -170,7 +170,7 @@ Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'mileszs/ack.vim'
 Plug 'vimtaku/hl_matchit.vim'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'camelcasemotion'
+Plug 'bkad/CamelCaseMotion'
 Plug 'Quramy/tsuquyomi'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'christoomey/vim-tmux-runner'
@@ -223,6 +223,9 @@ nnoremap \ :Ack<SPACE>
 vnoremap <F4> :VtrSendLinesToRunner<CR>
 nnoremap <leader>sl :VtrSendLinesToRunner<cr>
 vnoremap <leader>sl :VtrSendLinesToRunner<cr>
+
+" Use camel case motion
+call camelcasemotion#CreateMotionMappings('<leader>')
 
 " Support syntactic whitespace (e.g. sending to Python)
 let g:VtrStripLeadingWhitespace = 0
