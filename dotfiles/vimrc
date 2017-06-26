@@ -30,8 +30,16 @@ set title
 set titlestring=%t
 
 set incsearch
+
 " Use F3 to clear search highlighting
 nnoremap <F3> :set hlsearch!<CR>
+
+" Use F2 to remove search highlighting
+nnoremap <F2> :noh<return>
+
+" Map fzf to autocomplete opening files
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+nnoremap <leader>o :Files<cr>
 
 " More natural open split location
 set splitbelow
@@ -155,6 +163,8 @@ highlight Search ctermfg=black ctermbg=yellow
 call plug#begin()
 
 Plug 'ctrlpvim/ctrlp.vim'
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
@@ -163,6 +173,7 @@ Plug 'valloric/youcompleteme', { 'do': './install.py' }
 Plug 'tpope/vim-endwise'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'docunext/closetag.vim'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'kana/vim-textobj-user'
@@ -171,7 +182,6 @@ Plug 'mileszs/ack.vim'
 Plug 'vimtaku/hl_matchit.vim'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'bkad/CamelCaseMotion'
-Plug 'Quramy/tsuquyomi'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'christoomey/vim-tmux-runner'
 Plug 'godlygeek/tabular'
@@ -180,15 +190,14 @@ Plug 'slim-template/vim-slim'
 Plug 'Chiel92/vim-autoformat'
 Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-rails'
-Plug 'guns/vim-clojure-static'
 Plug 'tpope/vim-fireplace'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'sheerun/vim-polyglot'
+Plug 'vim-ruby/vim-ruby'
+Plug 'jparise/vim-graphql'
+Plug 'altercation/vim-colors-solarized'
 
 call plug#end()
-
-" usefule neoterm mappings
-nnoremap <F2> :call neoterm#toggle()<cr>
 
 let test#strategy = "vtr"
 
@@ -200,6 +209,10 @@ map <Leader>a :TestSuite<CR>
 
 "Highlight Ruby matching do/end def/end blocks
 let g:hl_matchit_enable_on_vim_startup = 1
+
+" Use solarized color scheme
+set background=dark
+colorscheme solarized
 
 " Make CtrlP use ag for listing the files. Way faster and no useless files.
 " The Silver Searcher
