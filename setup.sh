@@ -18,3 +18,5 @@ git config --global color.diff true
 # Use the brew installed vim instead of system one
 git config --global core.editor /usr/bin/vim
 
+# Development
+
