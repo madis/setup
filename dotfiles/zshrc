@@ -70,6 +70,8 @@ export PATH="$HOME/bin:$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 export PATH="/Users/madis/anaconda3/bin:$PATH" # added by Anaconda3 4.2.0 installer
 
+export PATH="/usr/local/opt/qt@5.5/bin:$PATH" # added to make qmake from Qt 5.5. take priority
+
 export NVM_DIR=~/.nvm
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
