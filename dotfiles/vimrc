@@ -7,6 +7,7 @@ let mapleader = ","
 " Show trailing Whitespace
 set listchars=tab:>\ ,trail:•,extends:>,precedes:<,nbsp:+
 set list
+set nowrap
 
 " Always use 2 spaces instead of tabs
 set expandtab
@@ -38,7 +39,7 @@ nnoremap <F3> :set hlsearch!<CR>
 nnoremap <F2> :noh<return>
 
 " Map fzf to autocomplete opening files
-let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+" let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 nnoremap <leader>o :Files<cr>
 
 " More natural open split location
@@ -49,6 +50,7 @@ set ruler
 set wildmenu
 set laststatus=2
 set cursorline
+
 set nofoldenable    " disable folding (for markdown)
 
 set ttimeoutlen=10 " Reduce delay after pressinng Esc
@@ -62,11 +64,11 @@ set ttimeoutlen=10 " Reduce delay after pressinng Esc
 " Show thin cursor in iterm. For neovim export
 au VimLeave * set guicursor=a:block-blinkon0
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:ver20,o:ver50,a:blinkwait700-blinkoff400-blinkon250,sm:block-blinkwait175-blinkoff150-blinkon175
-" Changing cursor shape per mode
-" 1 or 0 -> blinking block
-" 2 -> solid block
-" 3 -> blinking underscore
-" 4 -> solid underscore
+" " Changing cursor shape per mode
+" " 1 or 0 -> blinking block
+" " 2 -> solid block
+" " 3 -> blinking underscore
+" " 4 -> solid underscore
 if exists('$TMUX')
     " tmux will only forward escape sequences to the terminal if surrounded by a DCS sequence
     let &t_SI .= "\<Esc>Ptmux;\<Esc>\<Esc>[4 q\<Esc>\\"
@@ -118,6 +120,11 @@ augroup END
 augroup vimrc     " Source vim configuration upon save
   autocmd! BufWritePost $MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw
   autocmd! BufWritePost $MYGVIMRC if has('gui_running') | so % | echom "Reloaded " . $MYGVIMRC | endif | redraw
+augroup END
+
+augroup WrapLineInTeXFile
+    autocmd!
+    autocmd FileType markdown setlocal wrap
 augroup END
 
 if !&scrolloff
@@ -179,45 +186,55 @@ highlight Search ctermfg=black ctermbg=yellow
 " vim:set ft=vim et sw=2:
 call plug#begin()
 
-Plug 'ctrlpvim/ctrlp.vim'
-Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim'
+" LISP / Clojure plugins
+Plug 'tpope/vim-fireplace' " Clojure development dynamic
+Plug 'guns/vim-clojure-static' " Clojure development static
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'vim-scripts/paredit.vim'
+
+" Ruby related
+Plug 'vim-ruby/vim-ruby'
+Plug 'tpope/vim-rails'
+Plug 'nelstrom/vim-textobj-rubyblock'
+
+" General workflow
+Plug 'altercation/vim-colors-solarized'
+Plug 'godlygeek/tabular'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'slim-template/vim-slim'
+Plug 'christoomey/vim-tmux-runner'
+Plug 'mileszs/ack.vim'
+Plug 'vimtaku/hl_matchit.vim'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'bkad/CamelCaseMotion'
+Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'vim-airline/vim-airline'
-" Plug 'valloric/youcompleteme', { 'do': './install.py' }
+Plug 'ajh17/VimCompletesMe'
 Plug 'tpope/vim-endwise'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'docunext/closetag.vim'
-Plug 'mustache/vim-mustache-handlebars'
 Plug 'kana/vim-textobj-user'
-Plug 'nelstrom/vim-textobj-rubyblock'
-Plug 'mileszs/ack.vim'
-Plug 'vimtaku/hl_matchit.vim'
-Plug 'ntpeters/vim-better-whitespace'
-Plug 'bkad/CamelCaseMotion'
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-Plug 'christoomey/vim-tmux-runner'
 Plug 'godlygeek/tabular'
 Plug 'janko-m/vim-test'
-Plug 'slim-template/vim-slim'
 Plug 'Chiel92/vim-autoformat'
 Plug 'mattn/emmet-vim'
-Plug 'tpope/vim-rails'
-Plug 'tpope/vim-fireplace' " Clojure development dynamic
-Plug 'guns/vim-clojure-static' " Clojure development static
-" Plug 'luochen1990/rainbow'
-Plug 'kien/rainbow_parentheses.vim'
-Plug 'christoomey/vim-tmux-navigator'
+Plug 'tpope/vim-obsession'
+
+" Syntax / languages
 Plug 'sheerun/vim-polyglot'
-Plug 'vim-ruby/vim-ruby'
 Plug 'jparise/vim-graphql'
-Plug 'altercation/vim-colors-solarized'
+Plug 'tpope/vim-markdown'
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'exu/pgsql.vim'
 
 call plug#end()
+
+let g:sql_type_default = 'pgsql'
 
 let g:rainbow_active = 1
 
@@ -226,7 +243,7 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 let g:rbpt_colorpairs = [
-    \ ['brown',       'firebrick3'],
+    \ ['brown',       'RoyalBlue3'],
     \ ['Darkblue',    'SeaGreen3'],
     \ ['darkgray',    'DarkOrchid3'],
     \ ['darkgreen',   'firebrick3'],
@@ -235,7 +252,7 @@ let g:rbpt_colorpairs = [
     \ ['darkmagenta', 'DarkOrchid3'],
     \ ['brown',       'firebrick3'],
     \ ['gray',        'RoyalBlue3'],
-    \ ['black',       'SeaGreen3'],
+    \ ['white',       'SeaGreen3'],
     \ ['darkmagenta', 'DarkOrchid3'],
     \ ['Darkblue',    'firebrick3'],
     \ ['darkgreen',   'RoyalBlue3'],
@@ -243,6 +260,8 @@ let g:rbpt_colorpairs = [
     \ ['darkred',     'DarkOrchid3'],
     \ ['red',         'firebrick3'],
     \ ]
+
+let g:rbpt_max = 15 " Maximum rainbow parentheses colors (default 16, removed black)
 
 let test#strategy = "vtr"
 
@@ -289,3 +308,25 @@ call camelcasemotion#CreateMotionMappings('<leader>')
 let g:VtrStripLeadingWhitespace = 0
 let g:VtrClearEmptyLines = 0
 let g:VtrAppendNewline = 1
+
+function! s:fzf_statusline()
+  " Override statusline as you like
+  highlight fzf1 ctermfg=161 ctermbg=251
+  highlight fzf2 ctermfg=23 ctermbg=251
+  highlight fzf3 ctermfg=237 ctermbg=251
+  setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
+endfunction
+
+autocmd! User FzfStatusLine call <SID>fzf_statusline()
+let g:fzf_history_dir = '~/.local/share/fzf-history'
+
+" Markdown highlighting for fenced codeblocks
+" https://coderwall.com/p/ftqcla/markdown-with-fenced-code-blocks-in-vim
+" au BufNewFile,BufRead *.md  setf markdown
+" autocmd BufRead,BufNew *.md set filetype=markdown
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+let g:markdown_fenced_languages = ['coffee', 'css', 'erb=eruby', 'javascript', 'js=javascript', 'json=javascript', 'ruby', 'sass', 'xml', 'clojure']
+
+highlight clear CursorLine
+highlight CursorLine gui=underline cterm=underline
+

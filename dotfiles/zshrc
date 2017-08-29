@@ -87,3 +87,13 @@ ensure_tmux_is_running() {
 }
 
 ensure_tmux_is_running
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+bindkey '\e[1;3D' backward-word
+bindkey '\e[1;3C' forward-word
+
+export FZF_DEFAULT_COMMAND='ag -g ""' # To have hg filter out files based on .gitignore .hgignore svn:ignore
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND" # Apply the commant to CTRL-T as well
+
+GPG_TTY=$(tty)
+export GPG_TTY
