@@ -64,5 +64,8 @@ task :install do
 
     FileUtils.mkdir_p home 'bin'
     FileUtils.symlink bin('tat'), home('bin/tat')
+
+    FileUtils.mkdir_p home '.lein'
+    symlink 'lein_profiles.clj', '.lein/profiles.clj'
   end
 end
