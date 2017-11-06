@@ -1,6 +1,6 @@
 [user]
 	name = Madis Nõmme
-	email = madis.nomme@gmail.com
+	email = me@mad.is
 [color]
 	diff = true
 [core]
@@ -10,7 +10,7 @@
 	path = nvim
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-  path =
+	path =
 [alias]
   co = checkout
   ci = commit

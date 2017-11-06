@@ -118,6 +118,7 @@ augroup myfiletypes
 augroup END
 
 augroup vimrc     " Source vim configuration upon save
+  autocmd!
   autocmd! BufWritePost $MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw
   autocmd! BufWritePost $MYGVIMRC if has('gui_running') | so % | echom "Reloaded " . $MYGVIMRC | endif | redraw
 augroup END
@@ -224,6 +225,7 @@ Plug 'janko-m/vim-test'
 Plug 'Chiel92/vim-autoformat'
 Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-obsession'
+Plug 'kshenoy/vim-signature'
 
 " Syntax / languages
 Plug 'sheerun/vim-polyglot'
@@ -231,6 +233,8 @@ Plug 'jparise/vim-graphql'
 Plug 'tpope/vim-markdown'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'exu/pgsql.vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'rlue/vim-fold-rspec'
 
 call plug#end()
 

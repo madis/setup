@@ -7,3 +7,4 @@ coverage
 .starscope.db
 spec/examples.txt
 Session.vim
+node_modules

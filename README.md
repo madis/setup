@@ -4,11 +4,16 @@ In this repository are my *dotfiles* and some other configuration files and scri
 
 ## Setting up arrow keys in iTerm
 
-1. in ~/.inputrc:
+1. For Bash add to ~/.inputrc:
 ```
 "\M-d": backward-kill-word
 "\e[1;5C": forward-word
 "\e[1;5D": backward-word
+```
+2. For Zsh add to ~/.zshrc
+```
+bindkey ';5C' forward-word
+bindkey ';5D' backward-word
 ```
 
 2. iTerm2 preferences:
