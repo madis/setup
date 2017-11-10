@@ -1,7 +1,20 @@
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=10000
+SAVEHIST=10000
+
+# History plugin from zsh
+# https://github.com/robbyrussell/oh-my-zsh/blob/master/lib/history.zsh
+setopt append_history
+setopt extended_history
+setopt hist_expire_dups_first
+setopt hist_ignore_dups # ignore duplication command history list
+setopt hist_ignore_space
+setopt hist_verify
+setopt inc_append_history
+setopt share_history # share command history data
+# END History plugin from zsh
+
 bindkey -e
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
