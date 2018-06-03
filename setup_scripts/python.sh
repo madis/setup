@@ -10,3 +10,4 @@ pip install jupyter
 pip install pandas
 pip install psycopg2
 pip install scikit-learn
+pip install SQLAlchemy

@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 export TEMPDIR=/tmp/vim_setup_temp
 
 echo "Installing neovim head"

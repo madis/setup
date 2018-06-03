@@ -12,7 +12,7 @@ mkdir -p ~/bin
 
 # Set up global git config
 git config --global user.name "Madis Nõmme"
-git config --global user.email madis.nomme@gmail.com
+git config --global user.email me@mad.is
 git config --global color.diff true
 
 # Use the brew installed vim instead of system one

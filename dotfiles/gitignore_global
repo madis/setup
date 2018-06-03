@@ -9,3 +9,4 @@ spec/examples.txt
 Session.vim
 node_modules
 log/*.log
+.ignore
