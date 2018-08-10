@@ -226,6 +226,7 @@ Plug 'mustache/vim-mustache-handlebars'
 Plug 'exu/pgsql.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'rlue/vim-fold-rspec'
+Plug 'neomake/neomake'
 
 call plug#end()
 
@@ -286,7 +287,7 @@ endif
 " bind \ (backward slash) to grep shortcut
 command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 " Map backslash for searching with Ag
-nnoremap \ :Ack<SPACE>
+nnoremap <leader>f :Ack<SPACE>
 
 vnoremap <F4> :VtrSendLinesToRunner<CR>
 nnoremap <leader>sl :VtrSendLinesToRunner<cr>
