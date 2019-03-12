@@ -3,6 +3,7 @@ filetype plugin indent on
 
 syntax enable " Enable syntax highlighting
 let mapleader = ","
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 " Show trailing Whitespace
 set listchars=tab:>\ ,trail:•,extends:>,precedes:<,nbsp:+
@@ -41,6 +42,13 @@ nnoremap <F2> :noh<return>
 " Map fzf to autocomplete opening files
 " let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 nnoremap <leader>o :Files<cr>
+
+" Shortcut to open current file in new tab
+nnoremap <leader>tt :tabnew %<cr>
+au TabLeave * let g:lasttab = tabpagenr()
+" Return to last tab - tr - tab return
+nnoremap <silent> <leader>tr :exe "tabn ".g:lasttab<cr>
+vnoremap <silent> <leader>tr :exe "tabn ".g:lasttab<cr>
 
 " More natural open split location
 set splitbelow
@@ -118,6 +126,16 @@ augroup WrapLineInTeXFile
     autocmd FileType markdown setlocal wrap
 augroup END
 
+if did_filetype()
+    finish
+endif
+if getline(1) =~# '^#!.*/bin/env\s\+node\>'
+    setfiletype javascript
+endif
+if getline(1) =~# '^#!.*/bin/env\s\+ruby\>'
+    setfiletype ruby
+endif
+
 if !&scrolloff
   set scrolloff=1
 endif
@@ -189,7 +207,11 @@ Plug 'tpope/vim-rails'
 Plug 'nelstrom/vim-textobj-rubyblock'
 
 " General workflow
-Plug 'altercation/vim-colors-solarized'
+" Plug 'frankier/neovim-colors-solarized-truecolor-only'
+" Plug 'morhetz/gruvbox'
+" Plug 'jacoborus/tender.vim'
+Plug 'frankier/neovim-colors-solarized-truecolor-only'
+
 Plug 'godlygeek/tabular'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'slim-template/vim-slim'
@@ -229,6 +251,13 @@ Plug 'rlue/vim-fold-rspec'
 Plug 'neomake/neomake'
 
 call plug#end()
+
+" Add linuxbrew fzf to run time path
+set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
+
+set termguicolors
+" set background=dark
+colorscheme solarized
 
 let g:sql_type_default = 'pgsql'
 

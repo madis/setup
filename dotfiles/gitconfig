@@ -5,17 +5,17 @@
 	diff = true
 [core]
 	editor = nvim
-	excludesfile = /Users/madis/.gitignore_global
 [mergetool]
 	path = nvim
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+	path =
 [alias]
   co = checkout
   ci = commit
   st = status
   br = branch
+	brt = branch --sort=-committerdate
 [log]
   date = relative
 [format]
