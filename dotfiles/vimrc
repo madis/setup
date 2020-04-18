@@ -170,11 +170,6 @@ if !empty(&viminfo)
 endif
 set sessionoptions-=options
 
-" Allow color schemes to do bright colors without forcing bold.
-if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
-  set t_Co=16
-endif
-
 " Load matchit.vim, but only if the user hasn't installed a newer version.
 if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
   runtime! macros/matchit.vim
@@ -211,13 +206,13 @@ Plug 'nelstrom/vim-textobj-rubyblock'
 " Plug 'morhetz/gruvbox'
 " Plug 'jacoborus/tender.vim'
 Plug 'frankier/neovim-colors-solarized-truecolor-only'
+Plug 'tpope/vim-unimpaired'
 
 Plug 'godlygeek/tabular'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'slim-template/vim-slim'
 Plug 'christoomey/vim-tmux-runner'
 Plug 'mileszs/ack.vim'
-Plug 'vimtaku/hl_matchit.vim'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'bkad/CamelCaseMotion'
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
@@ -249,15 +244,27 @@ Plug 'exu/pgsql.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'rlue/vim-fold-rspec'
 Plug 'neomake/neomake'
+Plug 'rakr/vim-one'
 
 call plug#end()
 
 " Add linuxbrew fzf to run time path
 set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
 
-set termguicolors
+" Colorscheme BEGIN
+" Allow color schemes to do bright colors without forcing bold.
+" if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
+"   set t_Co=16
+" endif
+
+" set termguicolors
+" colorscheme solarized
 " set background=dark
-colorscheme solarized
+" Colorscheme END
+
+" colorscheme one
+" set background=light
+" let g:airline_theme='onehalfdark'
 
 let g:sql_type_default = 'pgsql'
 
@@ -330,15 +337,15 @@ let g:VtrStripLeadingWhitespace = 0
 let g:VtrClearEmptyLines = 0
 let g:VtrAppendNewline = 1
 
-function! s:fzf_statusline()
-  " Override statusline as you like
-  highlight fzf1 ctermfg=161 ctermbg=251
-  highlight fzf2 ctermfg=23 ctermbg=251
-  highlight fzf3 ctermfg=237 ctermbg=251
-  setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
-endfunction
+" function! s:fzf_statusline()
+"   " Override statusline as you like
+"   highlight fzf1 ctermfg=161 ctermbg=251
+"   highlight fzf2 ctermfg=23 ctermbg=251
+"   highlight fzf3 ctermfg=237 ctermbg=251
+"   setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
+" endfunction
 
-autocmd! User FzfStatusLine call <SID>fzf_statusline()
+" autocmd! User FzfStatusLine call <SID>fzf_statusline()
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 
 " Markdown highlighting for fenced codeblocks
