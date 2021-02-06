@@ -40,7 +40,7 @@ nnoremap <F3> :set hlsearch!<CR>
 nnoremap <F2> :noh<return>
 
 " Map fzf to autocomplete opening files
-" let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 nnoremap <leader>o :Files<cr>
 
 " Shortcut to open current file in new tab
@@ -89,6 +89,9 @@ autocmd VimResized * :wincmd =
 nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
 nnoremap <leader>= :wincmd =<cr>
 
+" Remove vim file explorer (netrw) C-h and C-l mappings as they conflict with
+" naviagion. From: https://gist.github.com/mhanberg/dd9377163be770930e6eedb81b2fe61e
+" Didn't work :(
 augroup ft_rb
   autocmd!
   " fix the SLOOOW syntax highlighting
@@ -109,7 +112,7 @@ augroup myfiletypes
   autocmd BufWritePre * StripWhitespace
 
   " Clojure
-  autocmd FileType clojure setlocal colorcolumn=80
+  autocmd FileType clojure setlocal
 
   " Procfile
   autocmd BufNewFile,BufReadPost Procfile set filetype=ruby
@@ -194,7 +197,9 @@ call plug#begin()
 Plug 'tpope/vim-fireplace' " Clojure development dynamic
 Plug 'guns/vim-clojure-static' " Clojure development static
 Plug 'kien/rainbow_parentheses.vim'
-Plug 'vim-scripts/paredit.vim'
+Plug 'guns/vim-sexp'
+Plug 'tpope/vim-sexp-mappings-for-regular-people'
+Plug 'gberenfield/cljfold.vim'
 
 " Ruby related
 Plug 'vim-ruby/vim-ruby'
@@ -247,6 +252,9 @@ Plug 'neomake/neomake'
 Plug 'rakr/vim-one'
 
 call plug#end()
+
+" Cljfold config
+let g:clojure_foldwords = "ns,def,defn,defn-,defmacro,defmethod,defschema,defprotocol,defrecord"
 
 " Add linuxbrew fzf to run time path
 set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
@@ -337,22 +345,8 @@ let g:VtrStripLeadingWhitespace = 0
 let g:VtrClearEmptyLines = 0
 let g:VtrAppendNewline = 1
 
-" function! s:fzf_statusline()
-"   " Override statusline as you like
-"   highlight fzf1 ctermfg=161 ctermbg=251
-"   highlight fzf2 ctermfg=23 ctermbg=251
-"   highlight fzf3 ctermfg=237 ctermbg=251
-"   setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
-" endfunction
-
-" autocmd! User FzfStatusLine call <SID>fzf_statusline()
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 
-" Markdown highlighting for fenced codeblocks
-" https://coderwall.com/p/ftqcla/markdown-with-fenced-code-blocks-in-vim
-" au BufNewFile,BufRead *.md  setf markdown
-" autocmd BufRead,BufNew *.md set filetype=markdown
-" autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 let g:markdown_fenced_languages = ['coffee', 'css', 'erb=eruby', 'javascript', 'js=javascript', 'json=javascript', 'ruby', 'sass', 'xml', 'clojure']
 
 highlight clear CursorLine
