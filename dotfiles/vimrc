@@ -59,8 +59,6 @@ set wildmenu
 set laststatus=2
 set cursorline
 
-set nofoldenable    " disable folding (for markdown)
-
 set ttimeoutlen=10 " Reduce delay after pressinng Esc
 
 " Show thin cursor in iterm. For neovim export
@@ -89,15 +87,6 @@ autocmd VimResized * :wincmd =
 nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
 nnoremap <leader>= :wincmd =<cr>
 
-" Remove vim file explorer (netrw) C-h and C-l mappings as they conflict with
-" naviagion. From: https://gist.github.com/mhanberg/dd9377163be770930e6eedb81b2fe61e
-" Didn't work :(
-augroup ft_rb
-  autocmd!
-  " fix the SLOOOW syntax highlighting
-  autocmd FileType ruby setlocal re=1 foldmethod=manual
-augroup END
-
 augroup myfiletypes
   " Clear old autocmds in group
   autocmd!
@@ -112,23 +101,17 @@ augroup myfiletypes
   autocmd BufWritePre * StripWhitespace
 
   " Clojure
-  autocmd FileType clojure setlocal
+  autocmd Filetype clojure setlocal foldmethod=syntax
+  autocmd Filetype clojure setlocal foldlevelstart=99
 
   " Procfile
   autocmd BufNewFile,BufReadPost Procfile set filetype=ruby
+
+  " Zinc
+  autocmd BufNewFile,BufRead *.zn set filetype=rust
 augroup END
 
-augroup vimrc     " Source vim configuration upon save
-  autocmd!
-  autocmd! BufWritePost $MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw
-  autocmd! BufWritePost $MYGVIMRC if has('gui_running') | so % | echom "Reloaded " . $MYGVIMRC | endif | redraw
-augroup END
-
-augroup WrapLineInTeXFile
-    autocmd!
-    autocmd FileType markdown setlocal wrap
-augroup END
-
+" START: Detect file type based on context
 if did_filetype()
     finish
 endif
@@ -138,6 +121,7 @@ endif
 if getline(1) =~# '^#!.*/bin/env\s\+ruby\>'
     setfiletype ruby
 endif
+" FINISH: Detect file type based on context
 
 if !&scrolloff
   set scrolloff=1
@@ -173,11 +157,6 @@ if !empty(&viminfo)
 endif
 set sessionoptions-=options
 
-" Load matchit.vim, but only if the user hasn't installed a newer version.
-if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
-  runtime! macros/matchit.vim
-endif
-
 inoremap <C-U> <C-G>u<C-U>
 
 " Load Powerline fonts for airline
@@ -187,19 +166,15 @@ set guifont=Inconsolata\ for\ Powerline:h15
 set fillchars+=stl:\ ,stlnc:\
 set termencoding=utf-8
 
-" More readable highlighting
-highlight Search ctermfg=black ctermbg=yellow
-
 " vim:set ft=vim et sw=2:
 call plug#begin()
 
 " LISP / Clojure plugins
-Plug 'tpope/vim-fireplace' " Clojure development dynamic
+" Plug 'tpope/vim-fireplace' " Clojure development dynamic
 Plug 'guns/vim-clojure-static' " Clojure development static
-Plug 'kien/rainbow_parentheses.vim'
+Plug 'luochen1990/rainbow'
 Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
-Plug 'gberenfield/cljfold.vim'
 
 " Ruby related
 Plug 'vim-ruby/vim-ruby'
@@ -207,11 +182,9 @@ Plug 'tpope/vim-rails'
 Plug 'nelstrom/vim-textobj-rubyblock'
 
 " General workflow
-" Plug 'frankier/neovim-colors-solarized-truecolor-only'
-" Plug 'morhetz/gruvbox'
-" Plug 'jacoborus/tender.vim'
 Plug 'frankier/neovim-colors-solarized-truecolor-only'
 Plug 'tpope/vim-unimpaired'
+Plug 'preservim/tagbar'
 
 Plug 'godlygeek/tabular'
 Plug 'christoomey/vim-tmux-navigator'
@@ -225,7 +198,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'vim-airline/vim-airline'
-Plug 'ajh17/VimCompletesMe'
+Plug 'ackyshake/VimCompletesMe'
 Plug 'tpope/vim-endwise'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
@@ -239,6 +212,7 @@ Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-obsession'
 Plug 'kshenoy/vim-signature'
 Plug 'junegunn/vim-easy-align'
+Plug 'https://github.com/adelarsq/vim-matchit'
 
 " Syntax / languages
 Plug 'sheerun/vim-polyglot'
@@ -259,29 +233,13 @@ let g:clojure_foldwords = "ns,def,defn,defn-,defmacro,defmethod,defschema,defpro
 " Add linuxbrew fzf to run time path
 set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
 
+colorscheme one
+set background=dark " for the dark version
 " Colorscheme BEGIN
-" Allow color schemes to do bright colors without forcing bold.
-" if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
-"   set t_Co=16
-" endif
-
-" set termguicolors
-" colorscheme solarized
-" set background=dark
-" Colorscheme END
-
-" colorscheme one
-" set background=light
-" let g:airline_theme='onehalfdark'
-
 let g:sql_type_default = 'pgsql'
 
 let g:rainbow_active = 1
 
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
 let g:rbpt_colorpairs = [
     \ ['brown',       'RoyalBlue3'],
     \ ['Darkblue',    'SeaGreen3'],
@@ -314,20 +272,6 @@ map <Leader>a :TestSuite<CR>
 "Highlight Ruby matching do/end def/end blocks
 let g:hl_matchit_enable_on_vim_startup = 1
 
-" Make CtrlP use ag for listing the files. Way faster and no useless files.
-" The Silver Searcher
-if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
-  let g:ackprg = 'ag --vimgrep'
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
-  let g:ctrlp_dotfiles = 1
-endif
-
 " bind \ (backward slash) to grep shortcut
 command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 " Map backslash for searching with Ag
@@ -351,3 +295,20 @@ let g:markdown_fenced_languages = ['coffee', 'css', 'erb=eruby', 'javascript', '
 
 highlight clear CursorLine
 highlight CursorLine gui=underline cterm=underline
+highlight Folded ctermbg=black
+highlight Visual ctermbg=gray ctermfg=black
+" More readable highlighting
+highlight Search ctermfg=black ctermbg=yellow
+
+
+" Tagbar config for Solidity
+let g:tagbar_type_solidity = {
+    \ 'ctagstype': 'solidity',
+    \ 'kinds' : [
+        \ 'c:contracts',
+        \ 'e:events',
+        \ 'f:functions',
+        \ 'm:mappings',
+        \ 'v:varialbes',
+    \ ]
+\ }
