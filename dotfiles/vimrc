@@ -111,6 +111,9 @@ augroup myfiletypes
   autocmd BufNewFile,BufRead *.zn set filetype=rust
 augroup END
 
+" Toggle folds (open/close) with <SPACE>
+nnoremap <silent> <Space> @=(foldlevel('.')?'zA':"\<Space>")<CR>
+
 " START: Detect file type based on context
 if did_filetype()
     finish
@@ -213,6 +216,7 @@ Plug 'tpope/vim-obsession'
 Plug 'kshenoy/vim-signature'
 Plug 'junegunn/vim-easy-align'
 Plug 'https://github.com/adelarsq/vim-matchit'
+Plug 'triglav/vim-visual-increment'
 
 " Syntax / languages
 Plug 'sheerun/vim-polyglot'
@@ -230,6 +234,7 @@ call plug#end()
 " Cljfold config
 let g:clojure_foldwords = "ns,def,defn,defn-,defmacro,defmethod,defschema,defprotocol,defrecord"
 
+set nrformats=alpha,hex
 " Add linuxbrew fzf to run time path
 set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
 
