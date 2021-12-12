@@ -50,6 +50,14 @@ au TabLeave * let g:lasttab = tabpagenr()
 nnoremap <silent> <leader>tr :exe "tabn ".g:lasttab<cr>
 vnoremap <silent> <leader>tr :exe "tabn ".g:lasttab<cr>
 
+" Go to tab by number
+noremap <M-1> 1gt
+noremap <M-2> 2gt
+noremap <M-3> 3gt
+noremap <M-4> 4gt
+noremap <M-5> 5gt
+noremap <M-6> 6gt
+
 " More natural open split location
 set splitbelow
 set splitright
@@ -232,7 +240,11 @@ Plug 'rakr/vim-one'
 call plug#end()
 
 " Cljfold config
-let g:clojure_foldwords = "ns,def,defn,defn-,defmacro,defmethod,defschema,defprotocol,defrecord"
+let g:clojure_foldwords = "ns,def,defn,defn-,defmacro,defmethod,defschema,defprotocol,defrecord,deftest"
+let g:clojure_syntax_keywords = {
+    \ 'clojureMacro': ["deftest"],
+    \ 'clojureFunc': ["string/join", "string/replace"]
+    \ }
 
 set nrformats=alpha,hex
 " Add linuxbrew fzf to run time path
