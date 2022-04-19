@@ -58,6 +58,10 @@ noremap <M-4> 4gt
 noremap <M-5> 5gt
 noremap <M-6> 6gt
 
+" Take cursor to the last window from anywhere - normally TagBar
+"   - https://vim.fandom.com/wiki/Going_to_the_nth-from-last_window
+noremap <leader>ta :exe winnr('$') 'wincmd w'<cr>
+
 " More natural open split location
 set splitbelow
 set splitright
@@ -186,6 +190,7 @@ Plug 'guns/vim-clojure-static' " Clojure development static
 Plug 'luochen1990/rainbow'
 Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
+Plug 'liquidz/vim-iced', {'for': 'clojure'}
 
 " Ruby related
 Plug 'vim-ruby/vim-ruby'
