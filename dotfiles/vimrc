@@ -193,9 +193,9 @@ Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'liquidz/vim-iced', {'for': 'clojure'}
 
 " Ruby related
-Plug 'vim-ruby/vim-ruby'
-Plug 'tpope/vim-rails'
-Plug 'nelstrom/vim-textobj-rubyblock'
+" Plug 'vim-ruby/vim-ruby'
+" Plug 'tpope/vim-rails'
+" Plug 'nelstrom/vim-textobj-rubyblock'
 
 " General workflow
 Plug 'frankier/neovim-colors-solarized-truecolor-only'
@@ -204,7 +204,6 @@ Plug 'preservim/tagbar'
 
 Plug 'godlygeek/tabular'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'slim-template/vim-slim'
 Plug 'christoomey/vim-tmux-runner'
 Plug 'mileszs/ack.vim'
 Plug 'ntpeters/vim-better-whitespace'
@@ -222,7 +221,7 @@ Plug 'tpope/vim-rhubarb'
 Plug 'docunext/closetag.vim'
 Plug 'kana/vim-textobj-user'
 Plug 'godlygeek/tabular'
-Plug 'janko-m/vim-test'
+" Plug 'janko-m/vim-test'
 Plug 'Chiel92/vim-autoformat'
 Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-obsession'
@@ -235,14 +234,26 @@ Plug 'triglav/vim-visual-increment'
 Plug 'sheerun/vim-polyglot'
 Plug 'jparise/vim-graphql'
 Plug 'tpope/vim-markdown'
-Plug 'mustache/vim-mustache-handlebars'
+" Plug 'mustache/vim-mustache-handlebars'
 Plug 'exu/pgsql.vim'
 Plug 'jiangmiao/auto-pairs'
-Plug 'rlue/vim-fold-rspec'
-Plug 'neomake/neomake'
+" Plug 'rlue/vim-fold-rspec'
+" Plug 'neomake/neomake'
 Plug 'rakr/vim-one'
 
 call plug#end()
+
+" Use ag instead of ack
+" let g:ackprg = 'ag --nogroup --nocolor --column'
+let g:ackprg = 'rg --vimgrep --type-not sql --smart-case'
+" Auto close the Quickfix list after pressing '<enter>' on a list item
+let g:ack_autoclose = 1
+
+" Any empty ack search will search for the work the cursor is on
+let g:ack_use_cword_for_empty_search = 1
+
+" Don't jump to first match
+cnoreabbrev Ack Ack!
 
 " Cljfold config
 let g:clojure_foldwords = "ns,def,defn,defn-,defmacro,defmethod,defschema,defprotocol,defrecord,deftest"
