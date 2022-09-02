@@ -99,6 +99,12 @@ autocmd VimResized * :wincmd =
 nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
 nnoremap <leader>= :wincmd =<cr>
 
+augroup CursorLine
+  au!
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
+augroup END
+
 augroup myfiletypes
   " Clear old autocmds in group
   autocmd!
@@ -121,6 +127,7 @@ augroup myfiletypes
 
   " Zinc
   autocmd BufNewFile,BufRead *.zn set filetype=rust
+  autocmd FileType markdown set wrap
 augroup END
 
 " Toggle folds (open/close) with <SPACE>
@@ -327,7 +334,7 @@ let g:fzf_history_dir = '~/.local/share/fzf-history'
 let g:markdown_fenced_languages = ['coffee', 'css', 'erb=eruby', 'javascript', 'js=javascript', 'json=javascript', 'ruby', 'sass', 'xml', 'clojure']
 
 highlight clear CursorLine
-highlight CursorLine gui=underline cterm=underline
+" highlight CursorLine gui=underline cterm=underline
 highlight Folded ctermbg=black
 highlight Visual ctermbg=gray ctermfg=black
 " More readable highlighting
