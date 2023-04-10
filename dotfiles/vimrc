@@ -3,8 +3,9 @@ filetype plugin indent on
 
 syntax enable " Enable syntax highlighting
 let mapleader = ","
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-
+" let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+" pip3 install neovim
+let g:python3_host_prog = "/home/linuxbrew/.linuxbrew/bin/python3"
 " Show trailing Whitespace
 set listchars=tab:>\ ,trail:•,extends:>,precedes:<,nbsp:+
 set list
@@ -132,18 +133,6 @@ augroup END
 " Toggle folds (open/close) with <SPACE>
 nnoremap <silent> <Space> @=(foldlevel('.')?'zA':"\<Space>")<CR>
 
-" START: Detect file type based on context
-if did_filetype()
-    finish
-endif
-if getline(1) =~# '^#!.*/bin/env\s\+node\>'
-    setfiletype javascript
-endif
-if getline(1) =~# '^#!.*/bin/env\s\+ruby\>'
-    setfiletype ruby
-endif
-" FINISH: Detect file type based on context
-
 if !&scrolloff
   set scrolloff=1
 endif
@@ -188,13 +177,13 @@ set fillchars+=stl:\ ,stlnc:\
 set termencoding=utf-8
 
 " vim:set ft=vim et sw=2:
-call plug#begin()
+call plug#begin('~/.vim/plugged')
 
 " LISP / Clojure plugins
 " Plug 'tpope/vim-fireplace' " Clojure development dynamic
 Plug 'guns/vim-clojure-static' " Clojure development static
 Plug 'luochen1990/rainbow'
-Plug 'guns/vim-sexp'
+Plug 'guns/vim-sexp', {'for': 'clojure'}
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'liquidz/vim-iced', {'for': 'clojure'}
 
@@ -219,7 +208,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'vim-airline/vim-airline'
-Plug 'ackyshake/VimCompletesMe'
+Plug 'ycm-core/YouCompleteMe'
 Plug 'tpope/vim-endwise'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
@@ -233,7 +222,7 @@ Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-obsession'
 Plug 'kshenoy/vim-signature'
 Plug 'junegunn/vim-easy-align'
-Plug 'https://github.com/adelarsq/vim-matchit'
+" Plug 'https://github.com/andymass/vim-matchup'
 Plug 'triglav/vim-visual-increment'
 
 " Syntax / languages
@@ -243,20 +232,21 @@ Plug 'tpope/vim-markdown'
 " Plug 'mustache/vim-mustache-handlebars'
 Plug 'exu/pgsql.vim'
 Plug 'jiangmiao/auto-pairs'
-" Plug 'rlue/vim-fold-rspec'
-" Plug 'neomake/neomake'
-Plug 'rakr/vim-one'
+Plug 'morhetz/gruvbox'
+Plug 'vitalk/vim-shebang'
 
 call plug#end()
 
 " Use ag instead of ack
-" let g:ackprg = 'ag --nogroup --nocolor --column'
 let g:ackprg = 'rg --vimgrep --type-not sql --smart-case'
 " Auto close the Quickfix list after pressing '<enter>' on a list item
 let g:ack_autoclose = 0
 
 " Any empty ack search will search for the work the cursor is on
 let g:ack_use_cword_for_empty_search = 1
+
+"Gruvbox color scheme config
+let g:gruvbox_invert_selection = 'false'
 
 " Don't jump to first match
 cnoreabbrev Ack Ack!
@@ -272,31 +262,12 @@ set nrformats=alpha,hex
 " Add linuxbrew fzf to run time path
 set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
 
-colorscheme one
+colorscheme gruvbox
 set background=dark " for the dark version
 " Colorscheme BEGIN
 let g:sql_type_default = 'pgsql'
 
 let g:rainbow_active = 1
-
-let g:rbpt_colorpairs = [
-    \ ['brown',       'RoyalBlue3'],
-    \ ['Darkblue',    'SeaGreen3'],
-    \ ['darkgray',    'DarkOrchid3'],
-    \ ['darkgreen',   'firebrick3'],
-    \ ['darkcyan',    'RoyalBlue3'],
-    \ ['darkred',     'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['brown',       'firebrick3'],
-    \ ['gray',        'RoyalBlue3'],
-    \ ['white',       'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['Darkblue',    'firebrick3'],
-    \ ['darkgreen',   'RoyalBlue3'],
-    \ ['darkcyan',    'SeaGreen3'],
-    \ ['darkred',     'DarkOrchid3'],
-    \ ['red',         'firebrick3'],
-    \ ]
 
 let g:rbpt_max = 15 " Maximum rainbow parentheses colors (default 16, removed black)
 
@@ -307,9 +278,6 @@ map <Leader>t :TestFile<CR>
 map <Leader>s :TestNearest<CR>
 map <Leader>l :TestLast<CR>
 map <Leader>a :TestSuite<CR>
-
-"Highlight Ruby matching do/end def/end blocks
-let g:hl_matchit_enable_on_vim_startup = 1
 
 " bind \ (backward slash) to grep shortcut
 command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
@@ -335,9 +303,9 @@ let g:markdown_fenced_languages = ['coffee', 'css', 'erb=eruby', 'javascript', '
 highlight clear CursorLine
 " highlight CursorLine gui=underline cterm=underline
 highlight Folded ctermbg=black
-highlight Visual ctermbg=gray ctermfg=black
+" highlight Visual ctermbg=gray ctermfg=black
 " More readable highlighting
-highlight Search ctermfg=black ctermbg=yellow
+" highlight Search ctermfg=black ctermbg=yellow
 
 
 " Tagbar config for Solidity
@@ -351,3 +319,5 @@ let g:tagbar_type_solidity = {
         \ 'v:varialbes',
     \ ]
 \ }
+
+AddShebangPattern! clojure ^#!.*/bin/env\s\+bb\>
