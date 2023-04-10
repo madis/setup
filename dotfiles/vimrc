@@ -288,6 +288,8 @@ vnoremap <F4> :VtrSendLinesToRunner<CR>
 nnoremap <leader>sl :VtrSendLinesToRunner<cr>
 vnoremap <leader>sl :VtrSendLinesToRunner<cr>
 
+noremap <leader>xx i✅ <Esc>
+
 " Use camel case motion
 call camelcasemotion#CreateMotionMappings('<leader>')
 
@@ -319,5 +321,4 @@ let g:tagbar_type_solidity = {
         \ 'v:varialbes',
     \ ]
 \ }
-
 AddShebangPattern! clojure ^#!.*/bin/env\s\+bb\>
