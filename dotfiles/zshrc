@@ -32,4 +32,6 @@ export HISTTIMEFORMAT="[%F %T] "
 
 path=('/home/madis/bin' $path)
 
+export FZF_DEFAULT_COMMAND='rg --files --vimgrep'
+
 if [ -e /home/madis/.nix-profile/etc/profile.d/nix.sh ]; then . /home/madis/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
