@@ -275,7 +275,7 @@ set nrformats=alpha,hex
 set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
 
 colorscheme gruvbox
-set background=light " dark for the dark version
+set background=dark " dark for the dark version
 " Colorscheme BEGIN
 let g:sql_type_default = 'pgsql'
 
@@ -303,6 +303,7 @@ vnoremap <leader>sl :VtrSendLinesToRunner<cr>
 noremap <leader>xx i✅ <Esc>
 noremap <leader>cc i🪓 <Esc>
 noremap <leader>!! i⚠️  <Esc>
+noremap <leader>td i🔨 <Esc>
 
 " Use camel case motion
 call camelcasemotion#CreateMotionMappings('<leader>')
