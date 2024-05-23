@@ -1,4 +1,0 @@
-require "awesome_print"
-AwesomePrint.irb!
-
-def gl(stack); stack.reject { |c| c.include?('.rvm/gems') }; end
