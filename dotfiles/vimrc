@@ -215,7 +215,8 @@ Plug 'christoomey/vim-tmux-runner'
 Plug 'mileszs/ack.vim'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'bkad/CamelCaseMotion'
-Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
@@ -384,7 +385,7 @@ cnoreabbrev Ack Ack!
 " Cljfold config
 let g:clojure_foldwords = "ns,def,defn,defn-,defmacro,defmethod,defschema,defprotocol,defrecord,deftest"
 let g:clojure_syntax_keywords = {
-    \ 'clojureMacro': ["deftest"],
+    \ 'clojureMacro': ["deftest", "defstate"],
     \ 'clojureFunc': ["string/join", "string/replace"]
     \ }
 
