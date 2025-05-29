@@ -22,6 +22,8 @@ set ttimeoutlen=100 " If a key sequence isn’t completed within this time, Vim 
 set title " set the terminal window’s title to reflect the current file or buffer
 set titlestring=%t " set the terminal title to the filename of the current buffer
 set incsearch " Enables incremental search, where Vim highlights matches as you type the search term, updating in real-time with each keystroke
+set splitright " Open new splits to right instead of left (reading order, more logical)
+set splitbelow " Open new splits to bottom instead of up (more logical, reading order)
 
 " Use F3 to clear search highlighting
 nnoremap <F3> :set hlsearch!<CR>
@@ -67,6 +69,8 @@ call plug#end()
 let g:gruvbox_italic=1
 colorscheme gruvbox
 let g:airline_theme='gruvbox'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#show_buffers = 0
 
 " Make fzf respect .gitignore by making it to use RipGrep
 let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
