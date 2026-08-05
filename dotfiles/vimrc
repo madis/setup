@@ -7,10 +7,12 @@ set listchars=tab:>\ ,trail:•,extends:>,precedes:<,nbsp:+
 set list
 
 let mapleader = ","
+let maplocalleader = "\\"
 
 set expandtab " insert spaces instead of TAB when clicking TAB key
 set tabstop=2 " tab size = 2 spaces
 set shiftwidth=2 " indentation size (when using << or >>)
+set termguicolors " for better colors
 
 set autoindent " indents a new line to match the indentation of the previous line
 set backspace=indent,eol,start " allow normal use of BACKSPACE character
@@ -24,6 +26,8 @@ set titlestring=%t " set the terminal title to the filename of the current buffe
 set incsearch " Enables incremental search, where Vim highlights matches as you type the search term, updating in real-time with each keystroke
 set splitright " Open new splits to right instead of left (reading order, more logical)
 set splitbelow " Open new splits to bottom instead of up (more logical, reading order)
+set cursorline " Have cursor row highlighted
+"set exrc " Enable running project-local configuration
 
 " Use F3 to clear search highlighting
 nnoremap <F3> :set hlsearch!<CR>
@@ -45,6 +49,9 @@ noremap <M-4> 4gt
 noremap <M-5> 5gt
 noremap <M-6> 6gt
 
+autocmd FileType clojure,markdown autocmd BufWritePre <buffer> :%s/\s\+$//e " Remove trailing whitespaces on save
+autocmd FileType clojure,clojurescript,clojurec,bb syntax off
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'christoomey/vim-tmux-navigator'
@@ -52,22 +59,106 @@ Plug 'christoomey/vim-tmux-runner'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
+
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'jiangmiao/auto-pairs'
+Plug 'windwp/nvim-autopairs'
+"Plug 'jiangmiao/auto-pairs' " Replaced with windwp/nvim-autopairs that works with snacks
+" --- Start of group
+"   The following 3 (sexp, regular-people, repeat) need to be together to work properly
+Plug 'guns/vim-sexp'
+Plug 'tpope/vim-sexp-mappings-for-regular-people'
+Plug 'tpope/vim-repeat'
+" --- End of group
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}  " For LSP integration and autocompletion
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " For better syntax highlighting
+Plug 'Olical/conjure'
 Plug 'morhetz/gruvbox'  " Optional: theme for better visibility
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
+Plug 'kshenoy/vim-signature' " To show and navigate marks on the gutter
 
+Plug 'neovim/nvim-lspconfig'
+Plug 'lifepillar/pgsql.vim'
+
+" Folding
+Plug 'kevinhwang91/nvim-ufo'
+Plug 'kevinhwang91/promise-async'
+
+" Some Ruby related plugins
+Plug 'slim-template/vim-slim'
+Plug 'rafamadriz/friendly-snippets'
+Plug 'alvan/vim-closetag'
+"Plug 'mattn/emmet-vim', {'commit': '3fb2f63799e1922f7647ed9ff3b32154031a76ee'}
+
+" AI plugins
+Plug 'nickjvandyke/opencode.nvim'
+Plug 'folke/snacks.nvim'
 call plug#end()
 
+" START Lua AI plugin config
+lua << EOF
+require("snacks").setup({
+  input = {},
+  picker = {
+    actions = {
+      opencode_send = function(...) return require("opencode").snacks_picker_send(...) end,
+    },
+    win = {
+      input = {
+        keys = {
+          ["<a-a>"] = { "opencode_send", mode = { "n", "i" } },
+        },
+      },
+    },
+  },
+})
+EOF
+
+" Configuration for working with multiple REPL-s and switching them
+" automatically
+lua << EOF
+  require('repl-router').setup({ shadow_delay = 100 })
+EOF
+
+" Main opencode.nvim setup
+lua << EOF
+-- You can customize options here (see lua/opencode/config.lua on GitHub for all defaults)
+vim.g.opencode_opts = {
+  -- Example custom options (uncomment and adjust as needed):
+  -- server = { ... },
+  -- ui = { ... },
+}
+
+-- Keymaps (you can change the LHS keys if desired)
+vim.keymap.set({ "n", "x" }, "<C-a>", function() require("opencode").ask("@this: ", { submit = true }) end, { desc = "Ask opencode…" })
+vim.keymap.set({ "n", "x" }, "<C-x>", function() require("opencode").select() end, { desc = "Execute opencode action…" })
+vim.keymap.set({ "n", "t" }, "<C-.>", function() require("opencode").toggle() end, { desc = "Toggle opencode" })
+vim.keymap.set({ "n", "x" }, "go", function() return require("opencode").operator("@this ") end, { desc = "Add range to opencode", expr = true })
+vim.keymap.set("n", "goo", function() return require("opencode").operator("@this ") .. "_" end, { desc = "Add line to opencode", expr = true })
+
+-- Scroll in opencode session
+vim.keymap.set("n", "<S-C-u>", function() require("opencode").command("session.half.page.up") end, { desc = "Scroll opencode up" })
+vim.keymap.set("n", "<S-C-u>", function() require("opencode").command("session.half.page.down") end, { desc = "Scroll opencode down" })
+
+-- Optional: Remap + / - to avoid conflicts with increment/decrement
+vim.keymap.set("n", "+", "<C-a>", { desc = "Increment under cursor", noremap = true })
+vim.keymap.set("n", "-", "<C-x>", { desc = "Decrement under cursor", noremap = true })
+EOF
+" END  Lua AI plugin config
+
+"call glaive#Install()
+" Disabled zprint
+"let g:zprint#make_autocmd = v:false " Don't format files automatically
+
+" Theme configuration
 let g:gruvbox_italic=1
 colorscheme gruvbox
+set background=dark
+
 let g:airline_theme='gruvbox'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#show_buffers = 0
@@ -75,27 +166,55 @@ let g:airline#extensions#tabline#show_buffers = 0
 " Make fzf respect .gitignore by making it to use RipGrep
 let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
 
+" Emmet config for HTML & CSS
+" Disabled as emmet doesn't get installed
+"let g:user_emmet_install_global = 0
+"let g:user_emmet_mode='a'
+"autocmd FileType html,css,eruby EmmetInstall
+
 " fzf.vim dialog
 nnoremap <leader>o :Files<cr>
 " Map backslash for searching with Ag
 nnoremap <leader>f :Rg<cr>
 
+" vim-closetag config
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.html.erb'
+
 " START Coc configuration
 " Coc.nvim configuration
-let g:coc_global_extensions = ['coc-clojure', 'coc-json', 'coc-tsserver']
-
-" Use <Tab> for completion
+let g:coc_global_extensions = ['coc-clojure', 'coc-conjure', 'coc-json', 'coc-tsserver', 'coc-sql', 'coc-solargraph']
+let g:sql_type_default = 'pgsql'
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved
 set signcolumn=yes
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-function! s:check_back_space() abort
+" Use tab for trigger completion with characters ahead and navigate
+" NOTE: There's always complete item selected by default, you may want to enable
+" no select by `"suggest.noselect": true` in your configuration file
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! CheckBackspace() abort
   let col = col('.') - 1
-  return !col || getline('.')[col - 1] =~# '\s'
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+" Use <c-space> to trigger completion
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
 
 " Code navigation keybindings
 nmap <silent> gd <Plug>(coc-definition)  " Go to definition
@@ -103,10 +222,86 @@ nmap <silent> gy <Plug>(coc-type-definition)  " Go to type definition
 nmap <silent> gi <Plug>(coc-implementation)  " Go to implementation
 nmap <silent> gr <Plug>(coc-references)  " Find references
 
+" Symbol renaming
+nmap <leader>rn <Plug>(coc-rename)
+
+" Formatting selected code
+xmap <leader>F <Plug>(coc-format-selected)
+nmap <leader>F <Plug>(coc-format-selected)
+
 " END Coc configuration
+
+" VimTmuxRunner bindings
+nnoremap <leader>vsl :VtrSendLinesToRunner<cr>
+vnoremap <leader>vsl :VtrSendLinesToRunner<cr>
 
 " treesitter config in Lua from ~/.config/nvim/lua/config/treesitter.lua
 lua require('config/treesitter') 
 
+lua require('config/ufo')
+lua require('config/conjure')
+
 " vim-airline Enable tabline
 let g:airline#extensions#tabline#enabled = 1
+
+" START LSP config
+" Enable LSP for clojure-lsp
+" Configure clojure-lsp
+lua << EOF
+  vim.lsp.config['clojure_lsp'] = {
+    cmd = { 'clojure-lsp' },
+    filetypes = { 'clojure', 'edn' },
+    root_markers = { 'project.clj', 'deps.edn', 'bb.edn', '.git' },
+    settings = {}
+  }
+  vim.lsp.enable('clojure_lsp')
+  vim.lsp.enable('ruby_lsp')
+EOF
+
+
+" Keybindings for LSP functionality
+augroup lsp_keymaps
+  autocmd!
+  autocmd LspAttach * nnoremap <silent> gd :lua vim.lsp.buf.definition()<CR>
+  autocmd LspAttach * nnoremap <silent> KK :lua vim.lsp.buf.hover()<CR>
+  autocmd LspAttach * nnoremap <silent> grn :lua vim.lsp.buf.rename()<CR>
+  autocmd LspAttach * nnoremap <silent> grr :lua vim.lsp.buf.references()<CR>
+  autocmd LspAttach * nnoremap <silent> gra :lua vim.lsp.buf.code_action()<CR>
+  autocmd LspAttach * inoremap <silent> <C-s> <cmd>lua vim.lsp.buf.signature_help()<CR>
+augroup END
+
+" Enable diagnostics
+lua << EOF
+  vim.diagnostic.config({
+    virtual_text = true,
+    signs = true,
+    update_in_insert = false,
+  })
+EOF
+" END LSP config
+
+" Soft-wrap markdown files
+augroup markdown_wrap
+  autocmd!
+  autocmd FileType markdown setlocal wrap
+  autocmd FileType markdown setlocal linebreak
+  autocmd FileType markdown setlocal textwidth=80
+  autocmd FileType markdown setlocal formatoptions-=t
+augroup END
+
+" Get rid of the cursorline when leaving window or buffer
+augroup CursorLine
+    au!
+    au VimEnter * setlocal cursorline
+    au WinEnter * setlocal cursorline
+    au BufWinEnter * setlocal cursorline
+    au WinLeave * setlocal nocursorline
+augroup END
+
+" Enable syntax highlighting in Markdown 
+let g:markdown_fenced_languages = ['html', 'json', 'clojure', 'javascript']
+
+" Add commands to open netrw at the current buffer path
+command! -nargs=? -complete=dir E  execute 'Explore'  (empty(<q-args>) ? expand('%:p:h') : <q-args>)
+command! -nargs=? -complete=dir VE execute 'Vexplore' (empty(<q-args>) ? expand('%:p:h') : <q-args>)
+command! -nargs=? -complete=dir SE execute 'Sexplore' (empty(<q-args>) ? expand('%:p:h') : <q-args>)
